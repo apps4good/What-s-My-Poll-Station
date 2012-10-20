@@ -20,7 +20,9 @@
 <body>
 
     <h1>
-        <a href="#">edit</a>
+        <a href="#" id="edit-location-btn">
+            <span>edit</span>
+        </a>
         Where's my poll station?
     </h1>
 
@@ -44,7 +46,7 @@
         $(function(){
             PollStation.init({
                 $map: $('#poll-map'),
-                $edit_location: $('h1 a'),
+                $edit_location: $('#edit-location-btn'),
                 $address: $('#address'),
                 $poll_map_container: $('#poll-map-container')
             });

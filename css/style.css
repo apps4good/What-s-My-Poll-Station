@@ -12,6 +12,7 @@ a {
 }
 
 h1 {
+    position: relative;
     background: #eee;
     padding: 8px;
     text-align: center;
@@ -24,6 +25,30 @@ h1 {
     background-image:    -moz-linear-gradient(top, #eeeeee, #ccc);
     background-image:      -o-linear-gradient(top, #eeeeee, #ccc);
     background-image:         linear-gradient(to bottom, #eeeeee, #ccc);
+}
+
+#edit-location-btn {
+    text-indent: -9999px;
+    display: block;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    height: 28px;
+    width: 32px;
+    background: #ccc;
+    border-radius: 6px;
+    background-color: #eeeeee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ddd), to(#aaa));
+    border: 1px solid #aaa;
+}
+
+#edit-location-btn span {
+    border-top: 1px solid #ccc;
+    background: url(../img/locate.png) no-repeat center;
+    background-size: 20px 20px;
+    display: block;
+    padding-top: 3px;
+    border-radius: 6px;
 }
 
 #poll-map-container {
