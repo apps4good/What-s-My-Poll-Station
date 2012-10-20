@@ -18,10 +18,34 @@
                     self.getClosestPoll(position.coords.latitude, position.coords.longitude);
                 }, self.geoError);
             } else {
-                alert('Your browser does not support geolocation');
+		        self.geocodeNotSupported(function(position){
+			      self.getClosestPoll(position.latitude, position.longitude); 
+		        });
+                //alert('Your browser does not support geolocation');
             }
 
         },
+
+    	geocodeNotSupported: function(cb) {
+    		/*
+    		var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; // Utilize the JSONP API 
+    		$.getJSON(url, function(data) { if(data['geoplugin_status'] == 200) { 
+    		// Do something with the data //
+    		$('#profile #ip').append(data['IP']); 
+    		//
+    		$('#profile #country').append(data['CountryName']); 
+    		var geoelement = document.getElementById('geolocationelement'); 
+    		geoelement.innerHTML = "Lat: " + data['geoplugin_latitude'] + "<br />" + "Long: " + data['geoplugin_longitude']; } });
+    		*/
+    		
+    		var position = {};
+    		position.latitude = 50.4579;
+    		position.longitude = -104.606;
+    		cb(position);
+    	},
+
+
+
 
         geoError: function(err){
 
