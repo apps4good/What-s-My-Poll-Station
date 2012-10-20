@@ -1,6 +1,6 @@
-/*globals $, navigator*/
+/*globals $, navigator, google*/
 
-(function(w){
+(function(w) {
 
     w.PollStation = {
 
@@ -29,9 +29,73 @@
                 });
                 //alert('Your browser does not support geolocation');
             }
-        },
 
             self.assignEvents();
+        },
+
+        assignEvents: function() {
+            var self = this;
+
+            self.opts.$edit_location.bind('click', function(e){
+                e.preventDefault();
+                var animate_prop_val = self.opts.$poll_map_container.css('marginTop') == '0px' ? '130px' : '0px';
+                self.opts.$poll_map_container.animate({
+                    marginTop: animate_prop_val
+                });
+            });
+        },
+
+        postMapRender: function(){
+
+            var self = this;
+
+            self.opts.$address.show();
+
+        },
+
+        geocodeNotSupported: function(callback) {
+
+            var position = {};
+            // default lat lon for Regina, SK.
+            // for testing only!!
+
+            position.latitude = 50.4579;
+            position.longitude = -104.606;
+
+            /*var url = "http://www.geoplugin.net/json.gp?jsoncallback=?";
+            // Utilize the JSONP API
+            $.getJSON(url, function(data) {
+                if(data['geoplugin_status'] == 200) {
+                    position.latitude = data['geoplugin_latitude'];
+                    position.logitude = data['geoplugin_longitude'];
+                }
+            });*/
+            callback(position);
+        },
+
+/*
+        geocodeByIP: function(cb) {
+            var url = "http://www.geoplugin.net/json.gp?jsoncallback=?";
+            // Utilize the JSONP API
+            $.getJSON(url, function(data) {
+                if(data['geoplugin_status'] == 200) {
+                    position.latitude = data['geoplugin_latitude'];
+                    position.logitude = data['geoplugin_longitude'];
+                }
+            });
+        },
+*/
+
+
+        /**
+            Gets the poll data lookup table.   This table is used to find the
+            name of the poll data for our current location.
+        */
+        getPollLookupTable: function (cb) {
+            $.getJSON('data/poll_table.json', function (data) {
+                cb(data);
+            });
+        },
 
         /**
             Callback for navigator.geolocation success.
@@ -45,84 +109,6 @@
             });
         },
 
-        assignEvents: function(){
-
-            var self = this;
-
-            self.opts.$edit_location.bind('click', function(e){
-                e.preventDefault();
-                var animate_prop_val = self.opts.$poll_map_container.css('marginTop') == '0px' ? '130px' : '0px';
-                self.opts.$poll_map_container.animate({
-                    marginTop: animate_prop_val
-                });
-            });
-
-        },
-
-        postMapRender: function(){
-
-            var self = this;
-
-            self.opts.$address.show();
-
-        },
-
-    	geocodeNotSupported: function(callback) {
-    		
-    		var position = {};
-    		// default lat lon for Regina, SK.
-            // for testing only!!
-            
-            position.latitude = 50.4579;
-    		position.longitude = -104.606;
-            
-            /*var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; 
-            // Utilize the JSONP API 
-            $.getJSON(url, function(data) { 
-                if(data['geoplugin_status'] == 200) {
-                    position.latitude = data['geoplugin_latitude'];
-                    position.logitude = data['geoplugin_longitude'];
-                }
-            });*/
-    		callback(position);
-    	},
-
-/*
-        geocodeByIP: function(cb) {
-            var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; 
-            // Utilize the JSONP API 
-            $.getJSON(url, function(data) { 
-                if(data['geoplugin_status'] == 200) {
-                    position.latitude = data['geoplugin_latitude'];
-                    position.logitude = data['geoplugin_longitude'];
-                }
-            });
-        },
-*/
-
-        geoError: function(err){
-        /**
-            Gets the poll data lookup table.   This table is used to find the
-            name of the poll data for our current location.
-        */
-        getPollLookupTable: function (cb) {
-            $.getJSON('data/poll_table.json', function (data) {
-                cb(data);
-            });
-        },
-
-            if(err.code == 1) {
-                // alert('The user denied the request for location information.')
-                self.geocodeNotSupported(function(position){
-                    self.getClosestPoll(position.latitude, position.longitude);
-                });
-            } else if(err.code == 2) {
-                alert('Your location information is unavailable.')
-            } else if(err.code == 3) {
-                alert('The request to get your location timed out.')
-            } else {
-                alert('An unknown error occurred while requesting your location.')
-            }
         /**
             Callback for poll lookup success.
         */
@@ -144,7 +130,6 @@
 
             fileName = this.filenameForPosition(position, lookupTable);
             if (fileName) {
-                debugger;
                 $.getJSON('data/' + fileName, function(data) {
                     cb(data);
                 });
@@ -166,6 +151,7 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: start
             };
+            var self = this;
 
             this.gmap = new google.maps.Map(this.opts.$map[0], mapOptions);
             directionsDisplay.setMap(this.gmap);
@@ -258,9 +244,11 @@
         },
 
         geoError: function(err){
-
             if(err.code === 1) {
-                alert('The user denied the request for location information.');
+                // alert('The user denied the request for location information.')
+                this.geocodeNotSupported(function(position){
+                    this.getClosestPoll(position.latitude, position.longitude);
+                });
             } else if(err.code === 2) {
                 alert('Your location information is unavailable.');
             } else if(err.code === 3) {
@@ -268,7 +256,6 @@
             } else {
                 alert('An unknown error occurred while requesting your location.');
             }
-
         }
 
     };
