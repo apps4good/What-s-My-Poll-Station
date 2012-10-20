@@ -33,22 +33,21 @@ def main():
     # the template. where data from the csv will be formatted to geojson
     template = \
     '''\
-{   
+    {   
             "poll" : %s,
+            "ward" : %s,
             "est18_2012" : "%s",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["%s","%s"]},
-                "properties" : { "entityid" : "%s", "name" : "%s", }
-},
-    '''
+                "properties" : { "entityid" : "%s", "name" : "%s" }
+    },
+'''
 
     ## @var output
     # The output to write to the output file
-    output = \
-    ''' \
-[ 
-    '''
+    output = '''[
+'''
     # the head of the geojson file
     #output = \
     #    ''' \
@@ -70,12 +69,11 @@ def main():
             ward = row[5]
             lon = row[6]
             lat = row[7]
-            output += template % (poll, est18_2012, lat, lon, entityid, name)
+            output += template % (poll, ward, est18_2012, lat, lon, entityid, 
+                    name)
             
     # the tail of the geojson file
-    output += \
-        ''' \
-]}'''
+    output += ''']'''
 
     # opens an geoJSON file to write the output to
     ## @var outFileHandle
