@@ -18,10 +18,12 @@
                     self.getClosestPoll(position.coords.latitude, position.coords.longitude);
                 }, self.geoError);
             } else {
+
 		        self.geocodeNotSupported(function(position){
 			      self.getClosestPoll(position.latitude, position.longitude); 
 		        });
                 //alert('Your browser does not support geolocation');
+
             }
 
         },
