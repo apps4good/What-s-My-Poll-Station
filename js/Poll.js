@@ -23,7 +23,7 @@
 
         },
 
-        geoError: function(error){
+        geoError: function(err){
 
             if(err.code == 1) {
                 alert('The user denied the request for location information.')
