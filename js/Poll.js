@@ -18,7 +18,6 @@
                     self.getClosestPoll(position.coords.latitude, position.coords.longitude);
                 }, self.geoError);
             } else {
-                alert('Your browser does not support geolocation');
             }
 
         },
