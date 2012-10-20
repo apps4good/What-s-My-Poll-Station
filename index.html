@@ -46,20 +46,8 @@
 
         $(function(){
 
-            // @TODO: Move this into Poll.js when the time is right!
-            var $loader = $('#loader');
-            $(window).bind('resize orientationchange', function(){
-                $loader.css({
-                    top: ($(window).height() / 2) - ($loader.outerHeight() / 2),
-                    left: ($(window).width() / 2) - ($loader.outerWidth() / 2)
-                });
-            }).trigger('resize');
-
-            setTimeout(function(){
-                $loader.hide();
-            }, 1000);
-
             PollStation.init({
+                $loader: $('#loader'),
                 $map: $('#poll-map'),
                 $edit_location: $('#edit-location-btn'),
                 $address: $('#address'),

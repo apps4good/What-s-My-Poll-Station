@@ -9,7 +9,8 @@
             $map: null,
             $edit_location: null,
             $address: null,
-            $poll_map_container: null
+            $poll_map_container: null,
+            $loader: null
         },
 
         init: function(opts) {
@@ -34,6 +35,7 @@
         },
 
         assignEvents: function() {
+
             var self = this;
 
             self.opts.$edit_location.bind('click', function(e){
@@ -43,6 +45,17 @@
                     marginTop: animate_prop_val
                 });
             });
+
+            $(window).bind('resize orientationchange', function(){
+                if(self.opts.$loader.is(':hidden')){
+                    $(this).unbind('resize orientationchange');
+                }
+                self.opts.$loader.css({
+                    top: ($(window).height() / 2) - (self.opts.$loader.outerHeight() / 2),
+                    left: ($(window).width() / 2) - (self.opts.$loader.outerWidth() / 2)
+                });
+            }).trigger('resize');
+
         },
 
         postMapRender: function(){
@@ -168,6 +181,7 @@
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
+                    self.opts.$loader.hide();
                 }
             });
         },
