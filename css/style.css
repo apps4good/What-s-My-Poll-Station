@@ -1,0 +1,16 @@
+body {
+    font-family: 'Arial';
+}
+#container {
+    width: 950px;
+    margin: 0 auto;
+}
+
+#container h1 {
+    text-align: center;
+}
+#poll-map {
+    width: 100%;
+    height: 500px;
+    border: 1px solid red;
+}
