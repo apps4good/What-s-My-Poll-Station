@@ -1,3 +1,5 @@
+/*globals $, navigator*/
+
 (function(w){
 
     w.PollStation = {
