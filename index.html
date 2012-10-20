@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What's my poll station?</title>
+    <title>Where's my poll station?</title>
 
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -19,15 +19,34 @@
 </head>
 <body>
 
-    <h1>What's my poll station?</h1>
-    <div id="poll-map"></div>
+    <h1>
+        <a href="#">edit</a>
+        Where's my poll station?
+    </h1>
 
-    <h3>Your nearest station is<span>3330 College Ave</span></h3>
+    <div id="main-map">
+        <div id="address">
+            <p>
+                Not in your ward right now?<br/>Enter your address below.
+            </p>
+            <input type="text" />
+            <input type="submit" value="Go!" />
+        </div>
+        <div id="poll-map-container">
+            <div id="poll-map"></div>
+            <div id="nearest-station" class="info-container">
+                <h3>Your nearest station in Ward 3 is<span>3330 College Ave</span></h3>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript">
         $(function(){
             PollStation.init({
-                $map: $('#poll-map')
+                $map: $('#poll-map'),
+                $edit_location: $('h1 a'),
+                $address: $('#address'),
+                $poll_map_container: $('#poll-map-container')
             });
         });
     </script>

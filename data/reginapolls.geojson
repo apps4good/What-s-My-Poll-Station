@@ -1,242 +1,272 @@
- [ 
+[
     {   
             "poll" : 2,
+            "ward" : 1,
             "est18_2012" : "5367",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4178487724","-104.6056116286"]},
-                "properties" : { "entityid" : "", "name" : "St. Anne's Catholic Church", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Anne's Catholic Church" }
+    },
     {   
             "poll" : 3,
+            "ward" : 1,
             "est18_2012" : "6032",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4373782371","-104.5825944637"]},
-                "properties" : { "entityid" : "", "name" : "Broadway United Church", }
-},
+                "properties" : { "entityid" : "", "name" : "Broadway United Church" }
+    },
     {   
             "poll" : 4,
+            "ward" : 2,
             "est18_2012" : "5112",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4023887212","-104.6319263914"]},
-                "properties" : { "entityid" : "", "name" : "Dr. A. E. Perry School", }
-},
+                "properties" : { "entityid" : "", "name" : "Dr. A. E. Perry School" }
+    },
     {   
             "poll" : 5,
+            "ward" : 2,
             "est18_2012" : "5111",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4125605353","-104.6244757303"]},
-                "properties" : { "entityid" : "", "name" : "Deshaye Catholic School", }
-},
+                "properties" : { "entityid" : "", "name" : "Deshaye Catholic School" }
+    },
     {   
             "poll" : 6,
+            "ward" : 2,
             "est18_2012" : "5041",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4264029485","-104.6262797927"]},
-                "properties" : { "entityid" : "", "name" : "St. Pius X School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Pius X School" }
+    },
     {   
             "poll" : 7,
+            "ward" : 3,
             "est18_2012" : "6037",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4450282381","-104.6318546533"]},
-                "properties" : { "entityid" : "", "name" : "Connaught School", }
-},
+                "properties" : { "entityid" : "", "name" : "Connaught School" }
+    },
     {   
             "poll" : 8,
+            "ward" : 3,
             "est18_2012" : "6038",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4459452464","-104.6158881933"]},
-                "properties" : { "entityid" : "", "name" : "YMCA", }
-},
+                "properties" : { "entityid" : "", "name" : "YMCA" }
+    },
     {   
             "poll" : 9,
+            "ward" : 3,
             "est18_2012" : "6018",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4485601872","-104.6001889133"]},
-                "properties" : { "entityid" : "", "name" : "Trinity Evangelical Lutheran Church", }
-},
+                "properties" : { "entityid" : "", "name" : "Trinity Evangelical Lutheran Church" }
+    },
     {   
             "poll" : 10,
+            "ward" : 4,
             "est18_2012" : "5157",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4398370878","-104.5530412474"]},
-                "properties" : { "entityid" : "", "name" : "Wilfrid Walker School", }
-},
+                "properties" : { "entityid" : "", "name" : "Wilfrid Walker School" }
+    },
     {   
             "poll" : 13,
+            "ward" : 5,
             "est18_2012" : "5494",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4498771448","-104.5476736055"]},
-                "properties" : { "entityid" : "", "name" : "F.W. Johnson High School", }
-},
+                "properties" : { "entityid" : "", "name" : "F.W. Johnson High School" }
+    },
     {   
             "poll" : 1,
+            "ward" : 1,
             "est18_2012" : "5704",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.40463313","-104.6035075259"]},
-                "properties" : { "entityid" : "", "name" : "St. Matthew School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Matthew School" }
+    },
     {   
             "poll" : 11,
+            "ward" : 4,
             "est18_2012" : "5138",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4221976224","-104.5471434841"]},
-                "properties" : { "entityid" : "", "name" : "W.S. Hawrylak School", }
-},
+                "properties" : { "entityid" : "", "name" : "W.S. Hawrylak School" }
+    },
     {   
             "poll" : 29,
+            "ward" : 10,
             "est18_2012" : "4940",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4910395943","-104.6319563107"]},
-                "properties" : { "entityid" : "", "name" : "St. Timothy School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Timothy School" }
+    },
     {   
             "poll" : 14,
+            "ward" : 5,
             "est18_2012" : "5393",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4583321428","-104.5434127935"]},
-                "properties" : { "entityid" : "", "name" : "St. Theresa School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Theresa School" }
+    },
     {   
             "poll" : 18,
+            "ward" : 6,
             "est18_2012" : "4897",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4585936049","-104.6285942797"]},
-                "properties" : { "entityid" : "", "name" : "Albert-Scott Community Centre", }
-},
+                "properties" : { "entityid" : "", "name" : "Albert-Scott Community Centre" }
+    },
     {   
             "poll" : 27,
+            "ward" : 9,
             "est18_2012" : "5178",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4949884622","-104.6677778071"]},
-                "properties" : { "entityid" : "", "name" : "YMCA", }
-},
+                "properties" : { "entityid" : "", "name" : "YMCA" }
+    },
     {   
             "poll" : 15,
+            "ward" : 5,
             "est18_2012" : "5435",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4500362799","-104.5700820692"]},
-                "properties" : { "entityid" : "", "name" : "Glen Elm Church of Christ", }
-},
+                "properties" : { "entityid" : "", "name" : "Glen Elm Church of Christ" }
+    },
     {   
             "poll" : 17,
+            "ward" : 6,
             "est18_2012" : "4171",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4571213103","-104.6243396658"]},
-                "properties" : { "entityid" : "", "name" : "Albert Community School", }
-},
+                "properties" : { "entityid" : "", "name" : "Albert Community School" }
+    },
     {   
             "poll" : 19,
+            "ward" : 7,
             "est18_2012" : "5323",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4755148928","-104.6072649269"]},
-                "properties" : { "entityid" : "", "name" : "Imperial School", }
-},
+                "properties" : { "entityid" : "", "name" : "Imperial School" }
+    },
     {   
             "poll" : 20,
+            "ward" : 7,
             "est18_2012" : "5153",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4811518169","-104.6262252624"]},
-                "properties" : { "entityid" : "", "name" : "Gladys McDonald School", }
-},
+                "properties" : { "entityid" : "", "name" : "Gladys McDonald School" }
+    },
     {   
             "poll" : 21,
+            "ward" : 7,
             "est18_2012" : "5163",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4787179796","-104.6495936366"]},
-                "properties" : { "entityid" : "", "name" : "Elsie Mironuck School", }
-},
+                "properties" : { "entityid" : "", "name" : "Elsie Mironuck School" }
+    },
     {   
             "poll" : 22,
+            "ward" : 8,
             "est18_2012" : "5146",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4615806705","-104.6533245043"]},
-                "properties" : { "entityid" : "", "name" : "Martin Collegiate", }
-},
+                "properties" : { "entityid" : "", "name" : "Martin Collegiate" }
+    },
     {   
             "poll" : 23,
+            "ward" : 8,
             "est18_2012" : "5179",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4653361506","-104.6655150989"]},
-                "properties" : { "entityid" : "", "name" : "St. Francis School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Francis School" }
+    },
     {   
             "poll" : 24,
+            "ward" : 8,
             "est18_2012" : "5200",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4762113415","-104.6689722828"]},
-                "properties" : { "entityid" : "", "name" : "St. Joan of Arc School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Joan of Arc School" }
+    },
     {   
             "poll" : 25,
+            "ward" : 9,
             "est18_2012" : "5566",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4760213772","-104.6800718689"]},
-                "properties" : { "entityid" : "", "name" : "St. Josaphat School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Josaphat School" }
+    },
     {   
             "poll" : 26,
+            "ward" : 9,
             "est18_2012" : "4246",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4954601102","-104.6796443973"]},
-                "properties" : { "entityid" : "", "name" : "North West Leisure Centre", }
-},
+                "properties" : { "entityid" : "", "name" : "North West Leisure Centre" }
+    },
     {   
             "poll" : 28,
+            "ward" : 10,
             "est18_2012" : "4979",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4883467993","-104.6568568607"]},
-                "properties" : { "entityid" : "", "name" : "Henry Janzen School", }
-},
+                "properties" : { "entityid" : "", "name" : "Henry Janzen School" }
+    },
     {   
             "poll" : 30,
+            "ward" : 10,
             "est18_2012" : "4419",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4926662064","-104.6102493798"]},
-                "properties" : { "entityid" : "", "name" : "St. Gregory School", }
-},
+                "properties" : { "entityid" : "", "name" : "St. Gregory School" }
+    },
     {   
             "poll" : 16,
+            "ward" : 6,
             "est18_2012" : "5521",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4435584721","-104.5860785025"]},
-                "properties" : { "entityid" : "", "name" : "Core/Ritchie Neighbourhood Centre", }
-},
+                "properties" : { "entityid" : "", "name" : "Core/Ritchie Neighbourhood Centre" }
+    },
     {   
             "poll" : 12,
+            "ward" : 4,
             "est18_2012" : "5111",
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : ["50.4296255224","-104.5273679672"]},
-                "properties" : { "entityid" : "", "name" : "Jack Mackenzie School", }
-},
-     ]}
+                "properties" : { "entityid" : "", "name" : "Jack Mackenzie School" }
+    },
+]
