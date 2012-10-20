@@ -21,12 +21,10 @@
                     self.getClosestPoll(position.coords.latitude, position.coords.longitude);
                 }, self.geoError);
             } else {
-
-		        self.geocodeNotSupported(function(position){
-			        self.getClosestPoll(position.latitude, position.longitude);
-		        });
+                self.geocodeNotSupported(function(position){
+                    self.getClosestPoll(position.latitude, position.longitude);
+                });
                 //alert('Your browser does not support geolocation');
-
             }
 
             self.assignEvents();
@@ -55,31 +53,46 @@
 
         },
 
-    	geocodeNotSupported: function(cb) {
-    		/*
-    		var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; // Utilize the JSONP API 
-    		$.getJSON(url, function(data) { if(data['geoplugin_status'] == 200) { 
-    		// Do something with the data //
-    		$('#profile #ip').append(data['IP']); 
-    		//
-    		$('#profile #country').append(data['CountryName']); 
-    		var geoelement = document.getElementById('geolocationelement'); 
-    		geoelement.innerHTML = "Lat: " + data['geoplugin_latitude'] + "<br />" + "Long: " + data['geoplugin_longitude']; } });
-    		*/
+    	geocodeNotSupported: function(callback) {
     		
     		var position = {};
-    		position.latitude = 50.4579;
+    		// default lat lon for Regina, SK.
+            // for testing only!!
+            
+            position.latitude = 50.4579;
     		position.longitude = -104.606;
-    		cb(position);
+            
+            /*var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; 
+            // Utilize the JSONP API 
+            $.getJSON(url, function(data) { 
+                if(data['geoplugin_status'] == 200) {
+                    position.latitude = data['geoplugin_latitude'];
+                    position.logitude = data['geoplugin_longitude'];
+                }
+            });*/
+    		callback(position);
     	},
 
-
-
+/*
+        geocodeByIP: function(cb) {
+            var url = "http://www.geoplugin.net/json.gp?jsoncallback=?"; 
+            // Utilize the JSONP API 
+            $.getJSON(url, function(data) { 
+                if(data['geoplugin_status'] == 200) {
+                    position.latitude = data['geoplugin_latitude'];
+                    position.logitude = data['geoplugin_longitude'];
+                }
+            });
+        },
+*/
 
         geoError: function(err){
 
             if(err.code == 1) {
-                alert('The user denied the request for location information.')
+                // alert('The user denied the request for location information.')
+                self.geocodeNotSupported(function(position){
+                    self.getClosestPoll(position.latitude, position.longitude);
+                });
             } else if(err.code == 2) {
                 alert('Your location information is unavailable.')
             } else if(err.code == 3) {
