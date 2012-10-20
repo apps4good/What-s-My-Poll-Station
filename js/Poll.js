@@ -155,7 +155,6 @@
             Callback for poll data success.
         */
         didGetPollData: function (position, pollData) {
-            var directionsDisplay = new google.maps.DirectionsRenderer();
             var lat = position.coords.latitude,
                 lng = position.coords.longitude;
             var start = new google.maps.LatLng(lat, lng);
@@ -167,16 +166,20 @@
             var self = this;
 
             this.gmap = new google.maps.Map(this.opts.$map[0], mapOptions);
+
+            // Get the nearest poll.
+            var nearestPoll = this.nearestPollForPosition(position, pollData);
+            var directionsDisplay = new google.maps.DirectionsRenderer();
             directionsDisplay.setMap(this.gmap);
 
-            var directionsService = new google.maps.DirectionsService();
-            var end = 'Regina, SK';
+            var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
             var request = {
                 origin: start,
                 destination: end,
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
             };
 
+            var directionsService = new google.maps.DirectionsService();
             directionsService.route(request, function(response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
@@ -187,14 +190,35 @@
         },
 
         /**
+            Iterates the poll data and returns the poll info for the nearest.
+        */
+        nearestPollForPosition: function(position, pollData) {
+            var distance = Infinity,
+                ret = null,
+                sourceLat = position.coords.latitude,
+                sourceLong = position.coords.longitude;
+
+            for (var i = pollData.length - 1; i >= 0; i--) {
+                var poll = pollData[i];
+                var newDistance = this.distance(sourceLat, sourceLong, poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
+
+                // Each time we find a closer poll, store it.
+                if (newDistance < distance) {
+                    distance = newDistance;
+                    ret = poll;
+                }
+            }
+
+            return ret;
+        },
+
+        /**
             Parses the lookup table to find a filename of poll data for our
             current position.
         */
         filenameForPosition: function (position, lookupTable) {
             var dist, i,
                 ret = null,
-                // sourceLat = position.lat,
-                // sourceLong = position.coordinates.lng,
                 point = { x: position.coords.longitude, y: position.coords.latitude };
 
             for (i = lookupTable.length - 1; i >= 0; i--) {
@@ -252,9 +276,14 @@
         */
         distance: function(sourceLat, sourceLong, destLat, destLong) {
           var radius = 6378137; // earth's mean radius in m
-          var result = Math.acos(Math.sin(sourceLat.toRad()) * Math.sin(destLat.toRad()) + Math.cos(sourceLat.toRad()) * Math.cos(destLat.toRad()) * Math.cos((destLong - sourceLong).toRad())) * radius;
+          var result = Math.acos(Math.sin(this.toRad(sourceLat)) * Math.sin(this.toRad(destLat)) + Math.cos(this.toRad(sourceLat)) * Math.cos(this.toRad(destLat)) * Math.cos(this.toRad(destLong - sourceLong))) * radius;
 
           return result;
+        },
+
+        /** Converts numeric degrees to radians */
+        toRad: function(number) {
+            return number * Math.PI / 180;
         },
 
         geoError: function(err){
