@@ -4,7 +4,10 @@
 
         gmap: null,
         defaults: {
-            $map: null
+            $map: null,
+            $edit_location: null,
+            $address: null,
+            $poll_map_container: null
         },
 
         init: function(opts){
@@ -20,11 +23,35 @@
             } else {
 
 		        self.geocodeNotSupported(function(position){
-			      self.getClosestPoll(position.latitude, position.longitude); 
+			        self.getClosestPoll(position.latitude, position.longitude);
 		        });
                 //alert('Your browser does not support geolocation');
 
             }
+
+            self.assignEvents();
+
+        },
+
+        assignEvents: function(){
+
+            var self = this;
+
+            self.opts.$edit_location.bind('click', function(e){
+                e.preventDefault();
+                var animate_prop_val = self.opts.$poll_map_container.css('marginTop') == '0px' ? '130px' : '0px';
+                self.opts.$poll_map_container.animate({
+                    marginTop: animate_prop_val
+                });
+            });
+
+        },
+
+        postMapRender: function(){
+
+            var self = this;
+
+            self.opts.$address.show();
 
         },
 
@@ -89,6 +116,7 @@
             directionsService.route(request, function(response, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
+                    self.postMapRender();
                 }
             });
 
