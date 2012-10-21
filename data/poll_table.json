@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-[
-    {
-        "topLeft":
-        { 
-            "lat": 50.5132796814,
-            "lng": -104.778601955
-        },
-        "botRight":
-        {
-            "lat": 50.3964054299,
-            "lng": -104.503535348
-        },
-        "city": "Regina",
-        "region": "SK",
-        "filename": "regina_polls.json"
-    }
-]
-=======
 [
     {
         "topLeft":
@@ -45,4 +26,3 @@
         "filename": "saskatoon_polls.json"
     }
 ]
->>>>>>> Adding Saskatoon to poll_table.json
