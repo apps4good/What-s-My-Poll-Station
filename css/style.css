@@ -95,6 +95,7 @@ h1 {
     height: 16px;
     margin-left: 5px;
     display: inline-block;
+    visibility: visible;
 }
 
 #address-error {

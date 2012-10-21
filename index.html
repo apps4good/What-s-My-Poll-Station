@@ -32,7 +32,7 @@
             <form>
                 <input type="text" placeholder="123 Fake St" />
                 <input type="submit" value="Go!" class="btn" />
-                <div id="address-loader" style="display:none"></div>
+                <div id="address-loader" style="visibility:hidden"></div>
             </form>
             <p id="address-error" style="display:none">
                 We're sorry, we were unable to find poll station data for your address.
@@ -41,7 +41,8 @@
         <div id="poll-map-container">
             <div id="poll-map"></div>
             <div id="nearest-station" class="info-container" style="display:none">
-                <h3>Your nearest station in ward <em></em> is<span></span></h3>
+                <h3>Your nearest station <em></em> is<span></span></h3>
+                <h5></h5>
             </div>
         </div>
     </div>
@@ -56,7 +57,8 @@
                 $map: $('#poll-map'),
                 $nearest_station: $('#nearest-station'),
                 $nearest_station_ward: $('#nearest-station em'),
-                $nearest_station_address: $('#nearest-station span'),
+                $nearest_station_name: $('#nearest-station span'),
+                $nearest_station_address: $('#nearest-station h5'),
                 $edit_location: $('#edit-location-btn'),
                 $address: $('#address'),
                 $address_form: $('#address form'),
@@ -64,7 +66,7 @@
                 $address_submit: $('#address input[type="submit"]'),
                 $address_loader: $('#address-loader'),
                 $address_error: $('#address-error'),
-                $poll_map_container: $('#poll-map-container')
+                $poll_map_container: $('#poll-map-container'),
             });
         });
     </script>

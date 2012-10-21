@@ -13,12 +13,14 @@
             $loader: null,
             $nearest_station_ward: null,
             $nearest_station_address: null,
+            $nearest_station_name: null,
             $nearest_station: null,
             $address_input: null,
             $address_submit: null,
             $address_form: null,
             $address_loader: null,
-            $address_error: null
+            $address_error: null,
+            address_panel_height: '130px'
         },
 
         init: function(opts) {
@@ -47,10 +49,8 @@
 
             self.opts.$edit_location.bind('click', function(e){
                 e.preventDefault();
-                var animate_prop_val = self.opts.$poll_map_container.css('marginTop') == '0px' ? '130px' : '0px';
-                self.opts.$poll_map_container.animate({
-                    marginTop: animate_prop_val
-                });
+                var animate_method = self.opts.$poll_map_container.css('marginTop') == '0px' ? 'slideAddressPanelDown' : 'slideAddressPanelUp';
+                self[animate_method]();
             });
 
             $(window).bind('resize orientationchange', function(){
@@ -66,7 +66,7 @@
             self.opts.$address_form.bind('submit', function(e){
                 e.preventDefault();
                 var address = self.opts.$address_input.val();
-                self.opts.$address_loader.show();
+                self.opts.$address_loader.css('visibility', 'visible');
                 self.didGetLatLngFromAddress(address, function(lat, lng){
                     var position = {
                         coords: {
@@ -74,11 +74,23 @@
                             longitude: lng
                         }
                     };
-                    self.opts.$address_loader.hide();
+                    self.opts.$address_loader.css('visibility', 'hidden');
                     self.didGetCurrentPosition(position);
                 });
             });
 
+        },
+
+        slideAddressPanelUp: function(){
+            this.opts.$poll_map_container.animate({
+                marginTop: 0
+            });
+        },
+
+        slideAddressPanelDown: function(){
+            this.opts.$poll_map_container.animate({
+                marginTop: this.opts.address_panel_height
+            });
         },
 
         didGetLatLngFromAddress: function(address, callback) {
@@ -248,8 +260,9 @@
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
                     self.opts.$loader.hide();
-                    self.opts.$nearest_station_ward.text(nearestPoll.ward);
-                    self.opts.$nearest_station_address.text(nearestPoll.properties.name);
+                    var ward_text = (parseInt(nearestPoll.ward) > 0) ? 'in ward ' + nearestPoll.ward : '';
+                    self.opts.$nearest_station_ward.text(ward_text);
+                    self.opts.$nearest_station_name.text(nearestPoll.properties.name);
                     self.opts.$nearest_station.show();
                 }
             });
