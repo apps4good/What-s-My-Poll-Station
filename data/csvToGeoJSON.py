@@ -1,5 +1,5 @@
 """
-@name Python Roman Numeral
+@name Python Roman Numeral CSV GeoJSON/JSON File
 @file csvToGeoJSON.py
 @author Andrew Dyck
 @author Daniel Pronych
@@ -21,8 +21,10 @@ __author__ = 'Andrew Dyck; Daniel Pronych'
 # Script Release Version
 __version__ = '1.0.0'
 
-def generate_jsonpolls():
+def generate_jsonpolls(infile, outfile):
     """@brief Generate Regina Polls Output Routine
+    @param infile Input File
+    @param outfile Output File
     @todo Finish the data and then the generation routine."""
     from xml.dom.minidom import parseString
     
@@ -41,7 +43,7 @@ def generate_jsonpolls():
     
     ## @var fh
     # The file handle to the City Limits XML/KML file
-    fh = open('CityLimits.kml', 'r')
+    fh = open(infile, 'r')
     ## @var data
     # Contains the file contents
     data = fh.read()
@@ -91,13 +93,15 @@ def generate_jsonpolls():
     print "Max: Lat - %s Long - %s" % (maxlat, maxlon)
     # write output JSON when working correctly
     
-def generate_reginapolls():
-    """@brief Generate Regina Polls Output Routine"""
+def generate_reginapolls(infile, outfile):
+    """@brief Generate Regina Polls Output Routine
+    @param infile Input File
+    @param outfile Output File"""
     import csv
 
     ## @var rawData
     # Read in raw data from csv
-    rawData = csv.reader(open('PollStations2012.csv', 'rb'), dialect='excel')
+    rawData = csv.reader(open(infile, 'rb'), dialect='excel')
 
     ## @var template
     # the template. where data from the csv will be formatted to geojson
@@ -153,17 +157,18 @@ def generate_reginapolls():
     # opens an geoJSON file to write the output to
     ## @var outFileHandle
     # The output file containing the GEO JSON contents
-    outFileHandle = open("reginapolls.geojson", "w")
+    outFileHandle = open(outfile, 'w')
     outFileHandle.write(output)
     outFileHandle.close()
 
 def main():
     """@brief Main Function"""
     # Generate the reginapolls.geojson output file (from CSV)
-    generate_reginapolls()
+    generate_reginapolls('ReginaPollStations2012.csv', 'regina_polls.json')
     # From XML/KML since the CSV source does not have coordinates
-    generate_jsonpolls()
+    # Rename output file when working to not modify the working file
+    generate_jsonpolls('ReginaCityLimits.kml','poll_table.geojson')
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     """  @brief Runs the CSV To GeoJSON Routines."""
     main()
