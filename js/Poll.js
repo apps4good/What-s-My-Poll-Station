@@ -260,8 +260,12 @@
 
             // Get the nearest poll.
             var nearestPoll = this.nearestPollForPosition(position, pollData);
-            var directionsDisplay = new google.maps.DirectionsRenderer();
-            directionsDisplay.setMap(this.gmap);
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: this.gmap,
+                markerOptions: {
+                    animation: google.maps.Animation.DROP
+                }
+            });
 
             var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
             var request = {
@@ -284,6 +288,22 @@
                     self.resetAddressPanel();
                 }
             });
+
+            // Plot all the polls on the map.
+            var i;
+            for (i = pollData.length - 1; i >= 0; i--) {
+                var marker,
+                    poll = pollData[i];
+
+                if (poll !== nearestPoll) {
+                    position = new google.maps.LatLng(poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
+                    marker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        map: this.gmap,
+                        position: position,
+                    });
+                }
+            }
         },
 
         /**
