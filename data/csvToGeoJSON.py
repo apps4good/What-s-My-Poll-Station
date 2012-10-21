@@ -115,7 +115,8 @@ def generate_reginapolls(infile, outfile):
             "geometry" : {
                 "type" : "Point",
                 "coordinates" : [%s,%s]},
-                "properties" : { "entityid" : "%s", "name" : "%s" }
+                "properties" : { "entityid" : "%s", 
+                    "name" : "%s" }
     }'''
 
     ## @var output
