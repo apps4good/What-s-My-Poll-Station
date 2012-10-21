@@ -10,6 +10,8 @@ Election.  The following cities are planned to work with this application:
 
 ![What's My Poll Station Example](https://github.com/apps4good/What-s-My-Poll-Station/raw/master/img/wheres-my-poll.png)
 
+Also test this application at: http://boedesign.com/wheresmypoll/
+
 Running What's My Poll Station
 ------------------------------
 
