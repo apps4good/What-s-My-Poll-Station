@@ -295,8 +295,12 @@
 
             // Get the nearest poll.
             var nearestPoll = this.nearestPollForPosition(position, pollData);
-            var directionsDisplay = new google.maps.DirectionsRenderer();
-            directionsDisplay.setMap(this.gmap);
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: this.gmap,
+                markerOptions: {
+                    animation: google.maps.Animation.DROP
+                }
+            });
 
             var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
             var request = {
@@ -311,7 +315,7 @@
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
                     self.opts.$loader.hide();
-                    var ward_text = (parseInt(nearestPoll.ward) > 0) ? 'in ward ' + nearestPoll.ward : '';
+                    var ward_text = (parseInt(nearestPoll.ward, 10) > 0) ? 'in ward ' + nearestPoll.ward : '';
                     self.opts.$nearest_station_ward.text(ward_text);
                     self.opts.$nearest_station_name.text(nearestPoll.properties.name);
                     self.opts.$nearest_station_street.text(nearestPoll.address);
@@ -319,6 +323,22 @@
                     self.resetAddressPanel();
                 }
             });
+
+            // Plot all the polls on the map.
+            var i;
+            for (i = pollData.length - 1; i >= 0; i--) {
+                var marker,
+                    poll = pollData[i];
+
+                if (poll !== nearestPoll) {
+                    position = new google.maps.LatLng(poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
+                    marker = new google.maps.Marker({
+                        animation: google.maps.Animation.DROP,
+                        map: this.gmap,
+                        position: position,
+                    });
+                }
+            }
         },
 
         /**
@@ -330,7 +350,8 @@
                 sourceLat = position.coords.latitude,
                 sourceLong = position.coords.longitude;
 
-            for (var i = pollData.length - 1; i >= 0; i--) {
+            var i;
+            for (i = pollData.length - 1; i >= 0; i--) {
                 var poll = pollData[i];
                 var newDistance = this.distance(sourceLat, sourceLong, poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
 
