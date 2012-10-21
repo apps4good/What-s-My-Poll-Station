@@ -34,6 +34,9 @@
                 <input type="submit" value="Go!" class="btn" />
                 <div id="address-loader" style="display:none"></div>
             </form>
+            <p id="address-error" style="display:none">
+                We're sorry, we were unable to find poll station data for your address.
+            </p>
         </div>
         <div id="poll-map-container">
             <div id="poll-map"></div>
@@ -60,6 +63,7 @@
                 $address_input: $('#address input[type="text"]'),
                 $address_submit: $('#address input[type="submit"]'),
                 $address_loader: $('#address-loader'),
+                $address_error: $('#address-error'),
                 $poll_map_container: $('#poll-map-container')
             });
         });

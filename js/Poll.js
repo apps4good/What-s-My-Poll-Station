@@ -17,27 +17,26 @@
             $address_input: null,
             $address_submit: null,
             $address_form: null,
-            $address_loader: null
+            $address_loader: null,
+            $address_error: null
         },
 
         init: function(opts) {
-            var self = this;
+            var mapOptions,
+                self = this;
 
             self.opts = $.extend(true, {}, self.defaults, opts);
 
-            if (navigator && navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    // Wrap our call to fix context of `this`.
-                    self.didGetCurrentPosition(position);
-                }, function(error){
-                    self.geoError(error);
-                });
-            } else {
-                self.geocodeNotSupported(function(position){
-                    self.getClosestPoll(position.latitude, position.longitude);
-                });
-                //alert('Your browser does not support geolocation');
-            }
+            this.getPollLookupTable(function(lookupTable) {
+                self.didGetPollLookupTable(lookupTable);
+            });
+
+            // Initialize the map.
+            mapOptions = {
+                zoom: 7,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            self.gmap = new google.maps.Map(self.opts.$map[0], mapOptions);
 
             self.assignEvents();
         },
@@ -82,7 +81,7 @@
 
         },
 
-        didGetLatLngFromAddress: function(address, callback){
+        didGetLatLngFromAddress: function(address, callback) {
 
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ address: address }, function(results, status) {
@@ -140,7 +139,6 @@
         },
 */
 
-
         /**
             Gets the poll data lookup table.   This table is used to find the
             name of the poll data for our current location.
@@ -148,7 +146,43 @@
         getPollLookupTable: function (cb) {
             $.getJSON('data/poll_table.json', function (data) {
                 cb(data);
+            }).error(function() {
+                self.error("Unable to retrieve table of supported cities.");
             });
+        },
+
+        /**
+            Callback for poll lookup success.
+        */
+        didGetPollLookupTable: function (lookupTable) {
+            var self = this;
+
+            self.lookupTable = lookupTable;
+            this.getCurrentPosition(function(position) {
+                // Wrap our call to fix context of `this`.
+                self.didGetCurrentPosition(position);
+            });
+        },
+
+        /**
+            Get current position.
+        */
+        getCurrentPosition: function () {
+            var self = this;
+
+            if (navigator && navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    // Wrap our call to fix context of `this`.
+                    self.didGetCurrentPosition(position);
+                }, function(error){
+                    self.geoError(error);
+                });
+            } else {
+                self.geocodeNotSupported(function(position){
+                    self.getClosestPoll(position.latitude, position.longitude);
+                });
+                //alert('Your browser does not support geolocation');
+            }
         },
 
         /**
@@ -157,19 +191,7 @@
         didGetCurrentPosition: function (position) {
             var self = this;
 
-            this.getPollLookupTable(function(lookupTable) {
-                // Wrap our call to fix context of `this`.
-                self.didGetPollLookupTable(position, lookupTable);
-            });
-        },
-
-        /**
-            Callback for poll lookup success.
-        */
-        didGetPollLookupTable: function (position, lookupTable) {
-            var self = this;
-
-            this.getPollData(position, lookupTable, function(pollData) {
+            this.getPollData(position, function(pollData) {
                 // Wrap our call to fix context of `this`.
                 self.didGetPollData(position, pollData);
             });
@@ -179,11 +201,11 @@
             Uses the poll data lookup table to find the poll data for our
             position.
         */
-        getPollData: function (position, lookupTable, cb) {
+        getPollData: function (position, cb) {
             var fileName;
             var self = this;
 
-            fileName = this.filenameForPosition(position, lookupTable);
+            fileName = this.filenameForPosition(position, self.lookupTable);
             if (fileName) {
                 $.ajax({
                     url: 'data/' + fileName,
@@ -195,6 +217,7 @@
                 });
             } else {
                 self.error('No matching poll data file found');
+                self.opts.$address_error.show();
             }
         },
 
@@ -205,14 +228,7 @@
             var lat = position.coords.latitude,
                 lng = position.coords.longitude;
             var start = new google.maps.LatLng(lat, lng);
-            var mapOptions = {
-                zoom: 7,
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                center: start
-            };
             var self = this;
-
-            this.gmap = new google.maps.Map(this.opts.$map[0], mapOptions);
 
             // Get the nearest poll.
             var nearestPoll = this.nearestPollForPosition(position, pollData);
@@ -335,6 +351,8 @@
         toRad: function(number) {
             return number * Math.PI / 180;
         },
+
+
 
         geoError: function(err){
             if(err.code === 1) {
