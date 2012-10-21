@@ -61,8 +61,9 @@ class GPSPoint():
     longitude = property(longitude)
     altitude = property(altitude)
 
-def generate_jsonpolls_regina(infile):
-    """@brief Generate Regina Polls Output Routine
+def generate_jsonpoll_regina(infile):
+    """@brief Determine City of Regina Latitude and Longitude
+    limits and return to call (botLeft and topRight)
     @param infile Input File
     @return The output string for Regina
     @todo Finish the data and then the generation routine."""
@@ -123,15 +124,102 @@ def generate_jsonpolls_regina(infile):
             maxlat = lat
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
     return [minlon, minlat, maxlon, maxlat]
+    
+def generate_jsonpoll_saskatoon(infile):
+    """@brief Generate Saskatoon Polls Output Routine
+    @param infile Input File
+    @param outfile Output File"""
+    
+    from xml.dom.minidom import parseString
+    
+    ## @var maxlon
+    # Contains the maximum longitude value, start at minimum
+    maxlon = -179.99
+    ## @var maxlat
+    # Contains the maximum longitude value, start at minimum
+    maxlat = -90.0
+    ## @var minlon
+    # Contains the minimum longitude value, start at maximum
+    minlon = 179.99
+    ## @var minlat
+    # Contains the minimum longitude value, start at maximum
+    minlat = 90.0
+    
+    ## @var template
+    # the template. where data from the csv will be formatted to geojson
+    # FIXME: poll, ward and address are not known from the source file
+    template = \
+    '''\
+    {   
+        "poll" : %s,
+        "ward" : %s,
+        "address" : "%s",
+        "est18_2012" : "%s",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [%s,%s]
+        },
+        "properties" : 
+        {
+            "entityid" : "%s", 
+            "name" : "%s"
+        }
+    }'''
+    
+    ## @var output
+    # The output to write to the output file
+    output = '''[
+'''
+    
+    ## @var inneroutput
+    # The running inner output to join and comma separate later
+    inneroutput = []
+    
+    ## @var fh
+    # The file handle to the City Limits XML/KML file
+    fh = open(infile, 'r')
+    ## @var data
+    # Contains the file contents
+    data = fh.read()
+    if(fh):
+        fh.close()
+    ## @var dom
+    # Contains the DOM object contents
+    dom = parseString(data)
+    ## @var placemark
+    # This data is obtained on a per row basis from the input KML/XML file
+    for placemark in dom.getElementsByTagName('Placemark'):
+        ## @var name
+        # Contains the name for this Saskatoon voting location
+        name = placemark.getElementsByTagName('name')[0].firstChild.nodeValue
+        # Sanitize for 'St. Paul School' in Saskatoon's Open Data dataset
+        # Does not negatively affect the other results
+        name = name.split('\n')[0]
+        ## @var point
+        # Contains the Point data from this row entry
+        point = placemark.getElementsByTagName('Point')[0]
+        ## @var coordinates
+        # Contains the coordinates XML Element
+        coordinates = point.getElementsByTagName('coordinates')[0]
+        ## @var coord
+        # Parse the above coordinates and split into a "long, lat, alt" array
+        coord = coordinates.firstChild.nodeValue.encode('utf-8').split(',')
+        ## @var lon
+        # Contains the longitude value for this polling station
+        lon = coord[0]
+        ## @var lat
+        # Contains the latitude value for this polling station
+        lat = coord[1]
 
 def generate_jsonpolls(outfile):
     """Generate JSON Polls Routine
     @param outfile Output File"""
     
-    reginapoints = generate_jsonpolls_regina('ReginaCityLimits.kml')
+    reginapoints = generate_jsonpoll_regina('ReginaCityLimits.kml')
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
-    minlat = float(reginapoints[0])
-    minlon = float(reginapoints[1])
+    minlon = float(reginapoints[0])
+    minlat = float(reginapoints[1])
     maxlon = float(reginapoints[2])
     maxlat = float(reginapoints[3])
     

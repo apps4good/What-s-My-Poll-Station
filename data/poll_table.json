@@ -3,11 +3,19 @@
         "topLeft":
         { 
             "lat": 50.5132796814,
+<<<<<<< HEAD
             "lng": -104.778601955
         },
         "botRight":
         {
             "lat": 50.3964054299,
+=======
+            "lng": -104.778601955
+        },
+        "botRight":
+        {
+            "lat": 50.3964054299,
+>>>>>>> Fixed incorrectled reversed output of lat and lon
             "lng": -104.503535348
         },
         "filename": "regina_polls.json"
