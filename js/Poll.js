@@ -11,9 +11,9 @@
             $address: null,
             $poll_map_container: null,
             $loader: null,
-            $nearest_station_ward: null,
-            $nearest_station_address: null,
             $nearest_station_name: null,
+            $nearest_station_ward: null,
+            $nearest_station_street: null,
             $nearest_station: null,
             $address_input: null,
             $address_submit: null,
@@ -30,16 +30,18 @@
 
             self.opts = $.extend(true, {}, self.defaults, opts);
 
-            this.getPollLookupTable(function(lookupTable) {
-                self.didGetPollLookupTable(lookupTable);
-            });
-
             // Initialize the map.
             mapOptions = {
                 zoom: 7,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             self.gmap = new google.maps.Map(self.opts.$map[0], mapOptions);
+
+            // Pull in the poll data files lookup table.
+            this.getPollLookupTable(function(lookupTable) {
+                self.didGetPollLookupTable(lookupTable);
+            });
+
 
             self.assignEvents();
         },
@@ -52,7 +54,7 @@
                 e.preventDefault();
                 var animate_method = self.opts.$poll_map_container.css('marginTop') == '0px' ? 'slideAddressPanelDown' : 'slideAddressPanelUp';
                 self[animate_method]();
-            });
+                });
 
             $(window).bind('resize orientationchange', function(){
                 if(self.opts.$loader.is(':hidden')){
@@ -209,7 +211,14 @@
         */
         didGetCurrentPosition: function (position) {
             var self = this;
+            var lat = position.coords.latitude,
+                lng = position.coords.longitude;
+            var center = new google.maps.LatLng(lat, lng);
 
+            // Update the map immediately.
+            this.gmap.setCenter(center);
+
+            // Attempt to get poll data for the position.
             this.getPollData(position, function(pollData) {
                 // Wrap our call to fix context of `this`.
                 self.didGetPollData(position, pollData);
@@ -235,7 +244,6 @@
                     }
                 });
             } else {
-                self.error('No matching poll data file found');
                 self.opts.$address_error.show();
                 self.slideAddressPanelDown(true);
             }
@@ -271,6 +279,7 @@
                     var ward_text = (parseInt(nearestPoll.ward) > 0) ? 'in ward ' + nearestPoll.ward : '';
                     self.opts.$nearest_station_ward.text(ward_text);
                     self.opts.$nearest_station_name.text(nearestPoll.properties.name);
+                    self.opts.$nearest_station_street.text(nearestPoll.address);
                     self.opts.$nearest_station.show();
                     self.resetAddressPanel();
                 }
@@ -373,8 +382,6 @@
         toRad: function(number) {
             return number * Math.PI / 180;
         },
-
-
 
         geoError: function(err){
             if(err.code === 1) {

@@ -1,6 +1,7 @@
 body {
     font-family: 'Arial';
     margin: 0;
+    min-width: 320px;
     padding: 0;
     color: #333;
     text-shadow: 1px 1px 0 #eee;
@@ -114,6 +115,10 @@ h1 {
 
 #nearest-station em {
     font-style: normal;
+}
+
+#nearest-station .street {
+    font-size: 0.9em;
 }
 
 .info-container {
