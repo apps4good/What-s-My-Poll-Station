@@ -331,14 +331,13 @@
                 markers = this.markers,
                 infoWindows = this.infoWindows;
 
-            if (!markers) { markers = this.markers = []; }
-            if (!infoWindows) { markers = this.infoWindows = []; }
-
             // Clear previous markers and info windows.
             var i;
-            for (i = markers.length - 1; i >= 0; i--) {
-                markers[i].setMap(null);
-                infoWindows[i].close();
+            if (markers) {
+                for (i = markers.length - 1; i >= 0; i--) {
+                    markers[i].setMap(null);
+                    infoWindows[i].close();
+                }
             }
             if (this.directionsDisplay) { this.directionsDisplay.setMap(null); }
 
