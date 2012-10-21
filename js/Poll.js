@@ -10,7 +10,10 @@
             $edit_location: null,
             $address: null,
             $poll_map_container: null,
-            $loader: null
+            $loader: null,
+            $nearest_station_ward: null,
+            $nearest_station_address: null,
+            $nearest_station: null
         },
 
         init: function(opts) {
@@ -185,6 +188,9 @@
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
                     self.opts.$loader.hide();
+                    self.opts.$nearest_station_ward.text(nearestPoll.ward);
+                    self.opts.$nearest_station_address.text(nearestPoll.properties.name);
+                    self.opts.$nearest_station.show();
                 }
             });
         },

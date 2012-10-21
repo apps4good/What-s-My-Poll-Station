@@ -34,8 +34,8 @@
         </div>
         <div id="poll-map-container">
             <div id="poll-map"></div>
-            <div id="nearest-station" class="info-container">
-                <h3>Your nearest station in Ward 3 is<span>3330 College Ave</span></h3>
+            <div id="nearest-station" class="info-container" style="display:none">
+                <h3>Your nearest station in ward <em></em> is<span></span></h3>
             </div>
         </div>
     </div>
@@ -49,6 +49,9 @@
             PollStation.init({
                 $loader: $('#loader'),
                 $map: $('#poll-map'),
+                $nearest_station: $('#nearest-station'),
+                $nearest_station_ward: $('#nearest-station em'),
+                $nearest_station_address: $('#nearest-station span'),
                 $edit_location: $('#edit-location-btn'),
                 $address: $('#address'),
                 $poll_map_container: $('#poll-map-container')
