@@ -21,10 +21,50 @@ __author__ = 'Andrew Dyck; Daniel Pronych'
 # Script Release Version
 __version__ = '1.0.0'
 
-def generate_jsonpolls(infile, outfile):
+class GPSPoint():
+    """ @brief GPS Point Class
+    @author Daniel Pronych
+    @date October 2012
+    @version 1.0.0
+    """
+    def __init__(self, latitude, longitude, altitude=0.0):
+        """Initialization Routine
+        @param latitude The latitude value
+        @param longitude The longitude value
+        @param altitude The altitude value
+        """
+        self.__latitude = latitude
+        self.__longitude = longitude
+        self.__altitude = altitude
+    
+    def latitude(self):
+        """Latitude Routine
+        @return Latitude value"""
+        return self.latitude
+    
+    def longitude(self):
+        """Longitude Routine
+        @return Longitude value"""
+        return self.__longitude
+    
+    def altitude(self):
+        """Altitude Routine
+        @return Altitude value"""
+        return self.__altitude
+    
+    def __str__(self):
+        """String Routine"""
+        return "%s, %s, %s" % (self.__latitude, self.__longitude,
+            self.__altitude)
+    
+    latitude = property(latitude)
+    longitude = property(longitude)
+    altitude = property(altitude)
+
+def generate_jsonpolls_regina(infile):
     """@brief Generate Regina Polls Output Routine
     @param infile Input File
-    @param outfile Output File
+    @return The output string for Regina
     @todo Finish the data and then the generation routine."""
     from xml.dom.minidom import parseString
     
@@ -81,6 +121,20 @@ def generate_jsonpolls(infile, outfile):
             minlat = lat
         if lat > maxlat:
             maxlat = lat
+    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
+    return [minlon, minlat, maxlon, maxlat]
+
+def generate_jsonpolls(outfile):
+    """Generate JSON Polls Routine
+    @param outfile Output File"""
+    
+    reginapoints = generate_jsonpolls_regina('ReginaCityLimits.kml')
+    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
+    minlat = float(reginapoints[0])
+    minlon = float(reginapoints[1])
+    maxlon = float(reginapoints[2])
+    maxlat = float(reginapoints[3])
+    
     ## @var output
     # The output to write to the output file
     output = \
@@ -121,15 +175,20 @@ def generate_polls_saskatoon(infile, outfile):
     template = \
     '''\
     {   
-            "poll" : %s,
-            "ward" : %s,
-            "address" : "%s",
-            "est18_2012" : "%s",
-            "geometry" : {
-                "type" : "Point",
-                "coordinates" : [%s,%s]},
-                "properties" : { "entityid" : "%s", 
-                    "name" : "%s" }
+        "poll" : %s,
+        "ward" : %s,
+        "address" : "%s",
+        "est18_2012" : "%s",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [%s,%s]
+        },
+        "properties" : 
+        {
+            "entityid" : "%s", 
+            "name" : "%s"
+        }
     }'''
     
     ## @var output
@@ -279,7 +338,7 @@ def main():
         'saskatoon_polls.json')
     
     # From XML/KML since the CSV source does not have coordinates
-    generate_jsonpolls('ReginaCityLimits.kml','poll_table.json')
+    generate_jsonpolls('poll_table.json')
 
 if __name__ == '__main__':
     """  @brief Runs the CSV To GeoJSON Routines."""
