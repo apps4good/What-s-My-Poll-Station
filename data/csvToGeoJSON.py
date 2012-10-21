@@ -179,8 +179,10 @@ def generate_reginapolls(infile, outfile):
 
 def main():
     """@brief Main Function"""
+    
     # Generate the reginapolls.geojson output file (from CSV)
     generate_reginapolls('ReginaPollStations2012.csv', 'regina_polls.json')
+    
     # From XML/KML since the CSV source does not have coordinates
     # Rename output file when working to not modify the working file
     generate_jsonpolls('ReginaCityLimits.kml','poll_table.json')
