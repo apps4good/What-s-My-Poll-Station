@@ -110,6 +110,7 @@ def generate_reginapolls(infile, outfile):
     {   
             "poll" : %s,
             "ward" : %s,
+            "address" : "%s",
             "est18_2012" : "%s",
             "geometry" : {
                 "type" : "Point",
@@ -145,8 +146,8 @@ def generate_reginapolls(infile, outfile):
             ward = row[5]
             lon = row[6]
             lat = row[7]
-            inneroutput.append(template % (poll, ward, est18_2012, lat, lon, 
-                    entityid, name))
+            inneroutput.append(template % (poll, ward, address, est18_2012, 
+                    lat, lon, entityid, name))
     output += ''',
 '''.join(inneroutput)
             

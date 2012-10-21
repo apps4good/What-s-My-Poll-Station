@@ -2,6 +2,7 @@
     {   
             "poll" : 2,
             "ward" : 1,
+            "address" : "1701 Cowan Crescent",
             "est18_2012" : "5367",
             "geometry" : {
                 "type" : "Point",
@@ -11,6 +12,7 @@
     {   
             "poll" : 3,
             "ward" : 1,
+            "address" : "105 Broadway Avenue",
             "est18_2012" : "6032",
             "geometry" : {
                 "type" : "Point",
@@ -20,6 +22,7 @@
     {   
             "poll" : 4,
             "ward" : 2,
+            "address" : "93 Lincoln Drive",
             "est18_2012" : "5112",
             "geometry" : {
                 "type" : "Point",
@@ -29,6 +32,7 @@
     {   
             "poll" : 5,
             "ward" : 2,
+            "address" : "37 Cameron Crescent",
             "est18_2012" : "5111",
             "geometry" : {
                 "type" : "Point",
@@ -38,6 +42,7 @@
     {   
             "poll" : 6,
             "ward" : 2,
+            "address" : "3301 Garnet Street",
             "est18_2012" : "5041",
             "geometry" : {
                 "type" : "Point",
@@ -47,6 +52,7 @@
     {   
             "poll" : 7,
             "ward" : 3,
+            "address" : "2124 Elphinstone Street",
             "est18_2012" : "6037",
             "geometry" : {
                 "type" : "Point",
@@ -56,6 +62,7 @@
     {   
             "poll" : 8,
             "ward" : 3,
+            "address" : "2400 13th Avenue",
             "est18_2012" : "6038",
             "geometry" : {
                 "type" : "Point",
@@ -65,6 +72,7 @@
     {   
             "poll" : 9,
             "ward" : 3,
+            "address" : "1909 Ottawa Street",
             "est18_2012" : "6018",
             "geometry" : {
                 "type" : "Point",
@@ -74,6 +82,7 @@
     {   
             "poll" : 10,
             "ward" : 4,
+            "address" : "2102 E Wagman Drive",
             "est18_2012" : "5157",
             "geometry" : {
                 "type" : "Point",
@@ -83,6 +92,7 @@
     {   
             "poll" : 13,
             "ward" : 5,
+            "address" : "400 Fines Drive",
             "est18_2012" : "5494",
             "geometry" : {
                 "type" : "Point",
@@ -92,6 +102,7 @@
     {   
             "poll" : 1,
             "ward" : 1,
+            "address" : "4710 Castle Road",
             "est18_2012" : "5704",
             "geometry" : {
                 "type" : "Point",
@@ -101,6 +112,7 @@
     {   
             "poll" : 11,
             "ward" : 4,
+            "address" : "2530 Assiniboine Avenue E.",
             "est18_2012" : "5138",
             "geometry" : {
                 "type" : "Point",
@@ -110,6 +122,7 @@
     {   
             "poll" : 29,
             "ward" : 10,
+            "address" : "280 Sangster Blvd.",
             "est18_2012" : "4940",
             "geometry" : {
                 "type" : "Point",
@@ -119,6 +132,7 @@
     {   
             "poll" : 14,
             "ward" : 5,
+            "address" : "2707 7th Avenue E.",
             "est18_2012" : "5393",
             "geometry" : {
                 "type" : "Point",
@@ -128,6 +142,7 @@
     {   
             "poll" : 18,
             "ward" : 6,
+            "address" : "1264 Athol Street",
             "est18_2012" : "4897",
             "geometry" : {
                 "type" : "Point",
@@ -137,6 +152,7 @@
     {   
             "poll" : 27,
             "ward" : 9,
+            "address" : "5939 Rochdale Blvd.",
             "est18_2012" : "5178",
             "geometry" : {
                 "type" : "Point",
@@ -146,6 +162,7 @@
     {   
             "poll" : 15,
             "ward" : 5,
+            "address" : "1825 Rothwell Street",
             "est18_2012" : "5435",
             "geometry" : {
                 "type" : "Point",
@@ -155,6 +172,7 @@
     {   
             "poll" : 17,
             "ward" : 6,
+            "address" : "1340 Robinson Street",
             "est18_2012" : "4171",
             "geometry" : {
                 "type" : "Point",
@@ -164,6 +182,7 @@
     {   
             "poll" : 19,
             "ward" : 7,
+            "address" : "200 Broad Street",
             "est18_2012" : "5323",
             "geometry" : {
                 "type" : "Point",
@@ -173,6 +192,7 @@
     {   
             "poll" : 20,
             "ward" : 7,
+            "address" : "335 N Garnet Street",
             "est18_2012" : "5153",
             "geometry" : {
                 "type" : "Point",
@@ -182,6 +202,7 @@
     {   
             "poll" : 21,
             "ward" : 7,
+            "address" : "18 Wakefield Crescent",
             "est18_2012" : "5163",
             "geometry" : {
                 "type" : "Point",
@@ -191,6 +212,7 @@
     {   
             "poll" : 22,
             "ward" : 8,
+            "address" : "1100 McIntosh",
             "est18_2012" : "5146",
             "geometry" : {
                 "type" : "Point",
@@ -200,6 +222,7 @@
     {   
             "poll" : 23,
             "ward" : 8,
+            "address" : "45 Mikkelson Drive",
             "est18_2012" : "5179",
             "geometry" : {
                 "type" : "Point",
@@ -209,6 +232,7 @@
     {   
             "poll" : 24,
             "ward" : 8,
+            "address" : "10 Dempsey Avenue",
             "est18_2012" : "5200",
             "geometry" : {
                 "type" : "Point",
@@ -218,6 +242,7 @@
     {   
             "poll" : 25,
             "ward" : 9,
+            "address" : "140 Greenwood Crescent",
             "est18_2012" : "5566",
             "geometry" : {
                 "type" : "Point",
@@ -227,6 +252,7 @@
     {   
             "poll" : 26,
             "ward" : 9,
+            "address" : "1127 N Arnason Street",
             "est18_2012" : "4246",
             "geometry" : {
                 "type" : "Point",
@@ -236,6 +262,7 @@
     {   
             "poll" : 28,
             "ward" : 10,
+            "address" : "222 Rink Avenue",
             "est18_2012" : "4979",
             "geometry" : {
                 "type" : "Point",
@@ -245,6 +272,7 @@
     {   
             "poll" : 30,
             "ward" : 10,
+            "address" : "302 Upland Drive",
             "est18_2012" : "4419",
             "geometry" : {
                 "type" : "Point",
@@ -254,6 +282,7 @@
     {   
             "poll" : 16,
             "ward" : 6,
+            "address" : "445 14th Avenue",
             "est18_2012" : "5521",
             "geometry" : {
                 "type" : "Point",
@@ -263,6 +292,7 @@
     {   
             "poll" : 12,
             "ward" : 4,
+            "address" : "3838 Buckingham Drive E.",
             "est18_2012" : "5111",
             "geometry" : {
                 "type" : "Point",
