@@ -89,6 +89,14 @@ h1 {
     padding: 10px;
 }
 
+#address-loader {
+    background: url(../img/small-loader.gif) no-repeat top left;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    display: inline-block;
+}
+
 #nearest-station em {
     font-style: normal;
 }

@@ -15,7 +15,9 @@
             $nearest_station_address: null,
             $nearest_station: null,
             $address_input: null,
-            $address_submit: null
+            $address_submit: null,
+            $address_form: null,
+            $address_loader: null
         },
 
         init: function(opts) {
@@ -62,8 +64,10 @@
                 });
             }).trigger('resize');
 
-            self.opts.$address_submit.bind('click', function(){
+            self.opts.$address_form.bind('submit', function(e){
+                e.preventDefault();
                 var address = self.opts.$address_input.val();
+                self.opts.$address_loader.show();
                 self.didGetLatLngFromAddress(address, function(lat, lng){
                     var position = {
                         coords: {
@@ -71,6 +75,7 @@
                             longitude: lng
                         }
                     };
+                    self.opts.$address_loader.hide();
                     self.didGetCurrentPosition(position);
                 });
             });
@@ -91,7 +96,7 @@
         },
 
         error: function(msg){
-            // error
+            console.error(msg);
         },
 
         postMapRender: function(){
@@ -176,6 +181,7 @@
         */
         getPollData: function (position, lookupTable, cb) {
             var fileName;
+            var self = this;
 
             fileName = this.filenameForPosition(position, lookupTable);
             if (fileName) {

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Where's my poll station?</title>
+    <title>Where's my poll?</title>
 
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
@@ -21,7 +21,7 @@
         <a href="#" id="edit-location-btn">
             <span>edit</span>
         </a>
-        Where's my poll station?
+        Where's my poll?
     </h1>
 
     <div id="main-map">
@@ -29,8 +29,11 @@
             <p>
                 Not in your ward right now?<br/>Enter your address below.
             </p>
-            <input type="text" placeholder="123 Fake St" />
-            <input type="submit" value="Go!" class="btn" />
+            <form>
+                <input type="text" placeholder="123 Fake St" />
+                <input type="submit" value="Go!" class="btn" />
+                <div id="address-loader" style="display:none"></div>
+            </form>
         </div>
         <div id="poll-map-container">
             <div id="poll-map"></div>
@@ -45,7 +48,6 @@
     <script type="text/javascript">
 
         $(function(){
-
             PollStation.init({
                 $loader: $('#loader'),
                 $map: $('#poll-map'),
@@ -54,8 +56,10 @@
                 $nearest_station_address: $('#nearest-station span'),
                 $edit_location: $('#edit-location-btn'),
                 $address: $('#address'),
+                $address_form: $('#address form'),
                 $address_input: $('#address input[type="text"]'),
                 $address_submit: $('#address input[type="submit"]'),
+                $address_loader: $('#address-loader'),
                 $poll_map_container: $('#poll-map-container')
             });
         });
