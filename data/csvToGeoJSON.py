@@ -107,8 +107,99 @@ def generate_jsonpolls(infile, outfile):
     outFileHandle = open(outfile, 'w')
     outFileHandle.write(output)
     outFileHandle.close()
+
+def generate_polls_saskatoon(infile, outfile):
+    """@brief Generate Saskatoon Polls Output Routine
+    @param infile Input File
+    @param outfile Output File"""
     
-def generate_reginapolls(infile, outfile):
+    from xml.dom.minidom import parseString
+    
+    ## @var template
+    # the template. where data from the csv will be formatted to geojson
+    # FIXME: poll, ward and address are not known from the source file
+    template = \
+    '''\
+    {   
+            "poll" : %s,
+            "ward" : %s,
+            "address" : "%s",
+            "est18_2012" : "%s",
+            "geometry" : {
+                "type" : "Point",
+                "coordinates" : [%s,%s]},
+                "properties" : { "entityid" : "%s", 
+                    "name" : "%s" }
+    }'''
+    
+    ## @var output
+    # The output to write to the output file
+    output = '''[
+'''
+    
+    ## @var inneroutput
+    # The running inner output to join and comma separate later
+    inneroutput = []
+    
+    ## @var fh
+    # The file handle to the City Limits XML/KML file
+    fh = open(infile, 'r')
+    ## @var data
+    # Contains the file contents
+    data = fh.read()
+    if(fh):
+        fh.close()
+    ## @var dom
+    # Contains the DOM object contents
+    dom = parseString(data)
+    ## @var placemark
+    # This data is obtained on a per row basis from the input KML/XML file
+    for placemark in dom.getElementsByTagName('Placemark'):
+        ## @var name
+        # Contains the name for this Saskatoon voting location
+        name = placemark.getElementsByTagName('name')[0].firstChild.nodeValue
+        ## @var point
+        # Contains the Point data from this row entry
+        point = placemark.getElementsByTagName('Point')[0]
+        ## @var coordinates
+        # Contains the coordinates XML Element
+        coordinates = point.getElementsByTagName('coordinates')[0]
+        ## @var coord
+        # Parse the above coordinates and split into a "long, lat, alt" array
+        coord = coordinates.firstChild.nodeValue.encode('utf-8').split(',')
+        ## @var lon
+        # Contains the longitude value for this polling station
+        lon = coord[0]
+        ## @var lat
+        # Contains the latitude value for this polling station
+        lat = coord[1]
+        
+        # @todo fix once these values can be obtained from the source inputs
+        poll = 0
+        ward = 0
+        address = ""
+        est18_2012 = ""
+        entityid = ""
+        
+        inneroutput.append(template % (poll, ward, address, est18_2012, 
+                    lat, lon, entityid, name))
+    
+    # Join the output and comma separate, also needed for no trailing comma
+    output += ''',
+'''.join(inneroutput)
+            
+    # the tail of the JSON output file
+    output += '''
+]
+'''
+
+    ## @var outFileHandle
+    # Output the contents to the JSON output file
+    outFileHandle = open(outfile, 'w')
+    outFileHandle.write(output.encode('utf-8'))
+    outFileHandle.close()
+    
+def generate_polls_regina(infile, outfile):
     """@brief Generate Regina Polls Output Routine
     @param infile Input File
     @param outfile Output File"""
@@ -181,10 +272,13 @@ def main():
     """@brief Main Function"""
     
     # Generate the reginapolls.geojson output file (from CSV)
-    generate_reginapolls('ReginaPollStations2012.csv', 'regina_polls.json')
+    generate_polls_regina('ReginaPollStations2012.csv', 'regina_polls.json')
+    
+    # From XML/KML since there is CSV source for Saskatoon Polling Station data
+    generate_polls_saskatoon('SaskatoonPollingStations2012.kml', 
+        'saskatoon_polls.json')
     
     # From XML/KML since the CSV source does not have coordinates
-    # Rename output file when working to not modify the working file
     generate_jsonpolls('ReginaCityLimits.kml','poll_table.json')
 
 if __name__ == '__main__':
