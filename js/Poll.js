@@ -6,6 +6,9 @@
 
         lookupTable: null,
         gmap: null,
+        lat: null,
+        lng: null,
+
         defaults: {
             $map: null,
             $edit_location: null,
@@ -107,8 +110,35 @@
 
         didGetLatLngFromAddress: function(address, callback) {
 
-            var geocoder = new google.maps.Geocoder();
             var self = this;
+
+            var geocoder = new google.maps.Geocoder();
+            var latlng = new google.maps.LatLng(this.lat, this.lng);
+
+            if(~address.indexOf(',')){
+                self.didGetByFullAddress(address, callback);
+            } else {
+                geocoder.geocode({'latLng': latlng }, function(results, status) {
+                    if(status == google.maps.GeocoderStatus.OK && results && results.length){
+                        for(var i = 0, rlen = results[0].address_components.length; i < rlen; i++){
+                            var res = results[0].address_components[i];
+                            if(~$.inArray('locality', res.types)){
+                                address += ', ' + res.short_name;
+                            }
+                        }
+                        self.didGetByFullAddress(address, callback);
+                    } else {
+                        self.error("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+
+        },
+
+        didGetByFullAddress: function(address, callback){
+
+            var self = this;
+            var geocoder = new google.maps.Geocoder();
 
             geocoder.geocode({ address: address }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK && results && results.length) {
@@ -221,6 +251,10 @@
             var self = this;
             var lat = position.coords.latitude,
                 lng = position.coords.longitude;
+
+            this.lat = lat;
+            this.lng = lng;
+
             var center = new google.maps.LatLng(lat, lng);
 
             // Update the map immediately.
