@@ -276,7 +276,7 @@
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
                     self.opts.$loader.hide();
-                    var ward_text = (parseInt(nearestPoll.ward) > 0) ? 'in ward ' + nearestPoll.ward : '';
+                    var ward_text = (parseInt(nearestPoll.ward, 10) > 0) ? 'in ward ' + nearestPoll.ward : '';
                     self.opts.$nearest_station_ward.text(ward_text);
                     self.opts.$nearest_station_name.text(nearestPoll.properties.name);
                     self.opts.$nearest_station_street.text(nearestPoll.address);
@@ -295,7 +295,8 @@
                 sourceLat = position.coords.latitude,
                 sourceLong = position.coords.longitude;
 
-            for (var i = pollData.length - 1; i >= 0; i--) {
+            var i;
+            for (i = pollData.length - 1; i >= 0; i--) {
                 var poll = pollData[i];
                 var newDistance = this.distance(sourceLat, sourceLong, poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
 
