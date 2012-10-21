@@ -13,7 +13,9 @@
             $loader: null,
             $nearest_station_ward: null,
             $nearest_station_address: null,
-            $nearest_station: null
+            $nearest_station: null,
+            $address_input: null,
+            $address_submit: null
         },
 
         init: function(opts) {
@@ -25,8 +27,9 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     // Wrap our call to fix context of `this`.
                     self.didGetCurrentPosition(position);
-                },
-                self.geoError);
+                }, function(error){
+                    self.geoError(error);
+                });
             } else {
                 self.geocodeNotSupported(function(position){
                     self.getClosestPoll(position.latitude, position.longitude);
@@ -59,6 +62,36 @@
                 });
             }).trigger('resize');
 
+            self.opts.$address_submit.bind('click', function(){
+                var address = self.opts.$address_input.val();
+                self.didGetLatLngFromAddress(address, function(lat, lng){
+                    var position = {
+                        coords: {
+                            latitude: lat,
+                            longitude: lng
+                        }
+                    };
+                    self.didGetCurrentPosition(position);
+                });
+            });
+
+        },
+
+        didGetLatLngFromAddress: function(address, callback){
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: address }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK && results && results.length) {
+                    callback(results[0].geometry.location.Xa, results[0].geometry.location.Ya);
+                } else {
+                    self.error("Geocode was not successful for the following reason: " + status);
+                }
+            });
+
+        },
+
+        error: function(msg){
+            // error
         },
 
         postMapRender: function(){
@@ -155,7 +188,7 @@
                     }
                 });
             } else {
-                console.error('no matching poll data file found');
+                self.error('No matching poll data file found');
             }
         },
 
@@ -304,14 +337,14 @@
                     this.getClosestPoll(position.latitude, position.longitude);
                 });
             } else if(err.code === 2) {
-                alert('Your location information is unavailable.');
+                this.error('Your location information is unavailable.');
             } else if(err.code === 3) {
-                alert('The request to get your location timed out.');
+                this.error('The request to get your location timed out.');
             } else {
-                alert('An unknown error occurred while requesting your location.');
+                this.error('An unknown error occurred while requesting your location.');
             }
         }
 
     };
 
-})(window, undefined);
+})(window);
