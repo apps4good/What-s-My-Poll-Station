@@ -30,16 +30,16 @@ def generate_jsonpolls(infile, outfile):
     
     ## @var maxlon
     # Contains the maximum longitude value, start at minimum
-    maxlon = -179
+    maxlon = -179.99
     ## @var maxlat
     # Contains the maximum longitude value, start at minimum
-    maxlat = -90
+    maxlat = -90.0
     ## @var minlon
     # Contains the minimum longitude value, start at maximum
-    minlon = 0
+    minlon = 179.99
     ## @var minlat
     # Contains the minimum longitude value, start at maximum
-    minlat = 89
+    minlat = 90.0
     
     ## @var fh
     # The file handle to the City Limits XML/KML file
@@ -67,36 +67,52 @@ def generate_jsonpolls(infile, outfile):
         xmlEntryRow = xmlEntry.split(',')
         ## @var lon
         # Individual Longitude Value
-        lon = xmlEntryRow[0]
+        lon = float(xmlEntryRow[0])
         ## @var lat
         # Individual Latitude Value
-        lat = xmlEntryRow[1]
+        lat = float(xmlEntryRow[1])
         # Altitude is xmlEntryRow[2]; however, not needed now
+        # Keep running track of minimums and maximums for lat and lon
         if lon < minlon:
             minlon = lon
-            # for debug purposes only - need to fix
-            print "change lon - <"
         if lon > maxlon:
             maxlon = lon
-            # for debug purposes only - works
-            #print "change lon - >"
         if lat < minlat:
-            print "change lat - <"
-            # for debug purposes only - need to fix
             minlat = lat
         if lat > maxlat:
             maxlat = lat
-            # for debug purposes only - works
-            #print "change lat - >"
-    # for debug purposes only - comment out after
-    print "Min: Lat - %s Long - %s" % (minlat, minlon)
-    print "Max: Lat - %s Long - %s" % (maxlat, maxlon)
-    # write output JSON when working correctly
+    ## @var output
+    # The output to write to the output file
+    output = \
+    '''\
+[
+    {
+        "topLeft":
+        { 
+            "lat": %s,
+            "lng": %s
+        },
+        "botRight":
+        {
+            "lat": %s,
+            "lng": %s
+        },
+        "filename": "%s"
+    }
+]
+''' % (maxlat, minlon, minlat, maxlon, 'regina_polls.json')
+    
+    ## @var outFileHandle
+    #  Output the contents to the JSON output file
+    outFileHandle = open(outfile, 'w')
+    outFileHandle.write(output)
+    outFileHandle.close()
     
 def generate_reginapolls(infile, outfile):
     """@brief Generate Regina Polls Output Routine
     @param infile Input File
     @param outfile Output File"""
+    
     import csv
 
     ## @var rawData
@@ -118,24 +134,20 @@ def generate_reginapolls(infile, outfile):
                 "properties" : { "entityid" : "%s", 
                     "name" : "%s" }
     }'''
-
+    
     ## @var output
     # The output to write to the output file
     output = '''[
 '''
-    # the head of the geojson file
-    #output = \
-    #    ''' \
-    #{ "type" : "Feature Collection",
-    #    {"features" : [
-    #    '''
 
     ## @var iter
     # loop through the csv by row skipping the first
     iter = 0
-    ## @var inneroutput
     
+    ## @var inneroutput
+    # The running inner output to join and comma separate later
     inneroutput = []
+    
     for row in rawData:
         iter += 1
         if iter >= 2:
@@ -149,16 +161,18 @@ def generate_reginapolls(infile, outfile):
             lat = row[7]
             inneroutput.append(template % (poll, ward, address, est18_2012, 
                     lat, lon, entityid, name))
+                    
+    # Join the output and comma separate, also needed for no trailing comma
     output += ''',
 '''.join(inneroutput)
             
-    # the tail of the geojson file
+    # the tail of the JSON output file
     output += '''
-]'''
+]
+'''
 
-    # opens an geoJSON file to write the output to
     ## @var outFileHandle
-    # The output file containing the GEO JSON contents
+    # Output the contents to the JSON output file
     outFileHandle = open(outfile, 'w')
     outFileHandle.write(output)
     outFileHandle.close()
@@ -169,7 +183,7 @@ def main():
     generate_reginapolls('ReginaPollStations2012.csv', 'regina_polls.json')
     # From XML/KML since the CSV source does not have coordinates
     # Rename output file when working to not modify the working file
-    generate_jsonpolls('ReginaCityLimits.kml','poll_table.geojson')
+    generate_jsonpolls('ReginaCityLimits.kml','poll_table.json')
 
 if __name__ == '__main__':
     """  @brief Runs the CSV To GeoJSON Routines."""
