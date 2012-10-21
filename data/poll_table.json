@@ -10,8 +10,19 @@
             "lat": 50.3964054299,
             "lng": -104.503535348
         },
-        "city": "Regina",
-        "region": "SK",
         "filename": "regina_polls.json"
+    },
+    {
+        "topLeft":
+        { 
+            "lat": 52.228893,
+            "lng": -106.824956
+        },
+        "botRight":
+        {
+            "lat": 52.069831,
+            "lng": -106.503862
+        },
+        "filename": "saskatoon_polls.json"
     }
 ]

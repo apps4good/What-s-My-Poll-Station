@@ -6,10 +6,16 @@
 @date October 2012
 @version 1.0.0
 
-Convert CSVToGeoJSON for PollStations2012.csv obtained from the City of Regina Open Data 
-website located at: http://openregina.cloudapp.net/DataBrowser/OpenRegina/
+Convert CSVToGeoJSON for PollStations2012.csv obtained from the City of Regina 
+Open Data website located at: 
+  http://openregina.cloudapp.net/DataBrowser/OpenRegina/
 
-Original File: https://github.com/andrewjdyck/infantProjects/blob/master/csvToGeoJSON/csvToGeoJSON.py
+Adding initial use of Saskatoon Open Data located at:
+  "http://www.saskatoon.ca/DEPARTMENTS/Corporate%20Services/
+Corporate%20Information%20Services/OpenData/Pages/OpenData.aspx"
+
+Original File: "https://github.com/andrewjdyck/infantProjects/blob/master/
+csvToGeoJSON/csvToGeoJSON.py"
 Original Date File Was Obtained: October 20, 2012
 """
 
@@ -145,37 +151,6 @@ def generate_jsonpoll_saskatoon(infile):
     # Contains the minimum longitude value, start at maximum
     minlat = 90.0
     
-    ## @var template
-    # the template. where data from the csv will be formatted to geojson
-    # FIXME: poll, ward and address are not known from the source file
-    template = \
-    '''\
-    {   
-        "poll" : %s,
-        "ward" : %s,
-        "address" : "%s",
-        "est18_2012" : "%s",
-        "geometry" : 
-        {
-            "type" : "Point",
-            "coordinates" : [%s,%s]
-        },
-        "properties" : 
-        {
-            "entityid" : "%s", 
-            "name" : "%s"
-        }
-    }'''
-    
-    ## @var output
-    # The output to write to the output file
-    output = '''[
-'''
-    
-    ## @var inneroutput
-    # The running inner output to join and comma separate later
-    inneroutput = []
-    
     ## @var fh
     # The file handle to the City Limits XML/KML file
     fh = open(infile, 'r')
@@ -190,44 +165,65 @@ def generate_jsonpoll_saskatoon(infile):
     ## @var placemark
     # This data is obtained on a per row basis from the input KML/XML file
     for placemark in dom.getElementsByTagName('Placemark'):
-        ## @var name
-        # Contains the name for this Saskatoon voting location
-        name = placemark.getElementsByTagName('name')[0].firstChild.nodeValue
-        # Sanitize for 'St. Paul School' in Saskatoon's Open Data dataset
-        # Does not negatively affect the other results
-        name = name.split('\n')[0]
         ## @var point
         # Contains the Point data from this row entry
-        point = placemark.getElementsByTagName('Point')[0]
+        #print placemark
+        #point = placemark.getElementsByTagName('Point')[0]
         ## @var coordinates
         # Contains the coordinates XML Element
-        coordinates = point.getElementsByTagName('coordinates')[0]
+        coordinates = placemark.getElementsByTagName('coordinates')[0]
+        #print coordinates
         ## @var coord
         # Parse the above coordinates and split into a "long, lat, alt" array
-        coord = coordinates.firstChild.nodeValue.encode('utf-8').split(',')
-        ## @var lon
-        # Contains the longitude value for this polling station
-        lon = coord[0]
-        ## @var lat
-        # Contains the latitude value for this polling station
-        lat = coord[1]
+        coords = coordinates.firstChild.nodeValue.encode('utf-8').split(' ')
+        for coord in coords:
+            try:
+                #print coord
+                ## @var lla
+                # Lat, Long, Alt
+                lla = coord.strip().split(',')
+                #print lla[0]
+                #print "len: %s" % (len(lla))
+                ## @var lon
+                # Contains the longitude value for this polling station
+                lon = float(lla[0])
+                ## @var lat
+                # Contains the latitude value for this polling station
+                lat = float(lla[1])
+                
+                # Altitude is lla[2]; however, not needed now
+                # Keep running track of minimums and maximums for lat and lon
+                if lon < minlon:
+                    minlon = lon
+                if lon > maxlon:
+                    maxlon = lon
+                if lat < minlat:
+                    minlat = lat
+                if lat > maxlat:
+                    maxlat = lat
+            except:
+                pass
+    
+    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
+    return [minlon, minlat, maxlon, maxlat]
 
 def generate_jsonpolls(outfile):
     """Generate JSON Polls Routine
     @param outfile Output File"""
     
-    reginapoints = generate_jsonpoll_regina('ReginaCityLimits.kml')
-    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
-    minlon = float(reginapoints[0])
-    minlat = float(reginapoints[1])
-    maxlon = float(reginapoints[2])
-    maxlat = float(reginapoints[3])
+    ## @var inneroutput
+    # The inneroutput contents, joined into output later
+    inneroutput = []
     
     ## @var output
     # The output to write to the output file
-    output = \
+    output = '''[
+'''
+
+    ## @var template
+    # The output template
+    template = \
     '''\
-[
     {
         "topLeft":
         { 
@@ -240,10 +236,42 @@ def generate_jsonpolls(outfile):
             "lng": %s
         },
         "filename": "%s"
-    }
-]
-''' % (maxlat, minlon, minlat, maxlon, 'regina_polls.json')
+    }'''
     
+    reginapoints = generate_jsonpoll_regina('ReginaCityLimits.kml')
+    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
+    minlon = float(reginapoints[0])
+    minlat = float(reginapoints[1])
+    maxlon = float(reginapoints[2])
+    maxlat = float(reginapoints[3])
+    
+    # Add to the list
+    inneroutput.append(template % (maxlat, minlon, minlat, maxlon,
+        'regina_polls.json'))
+    
+    saskatoonpoints = generate_jsonpoll_saskatoon(
+            'SaskatoonElection2012.kml')
+    
+    # Return value in Min Lat, Min Lon, Max Lon, Max Lat
+    minlon = float(saskatoonpoints[0])
+    minlat = float(saskatoonpoints[1])
+    maxlon = float(saskatoonpoints[2])
+    maxlat = float(saskatoonpoints[3])
+    
+    # Add to the list
+    inneroutput.append(template % (maxlat, minlon, minlat, maxlon,
+        'saskatoon_polls.json'))
+    
+    # Join the output and comma separate, also needed for no trailing comma
+    output += ''',
+'''.join(inneroutput)
+
+    #output += inneroutput
+    # the tail of the JSON output file
+    output += '''
+]
+'''
+
     ## @var outFileHandle
     #  Output the contents to the JSON output file
     outFileHandle = open(outfile, 'w')
