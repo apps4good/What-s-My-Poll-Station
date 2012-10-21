@@ -10,6 +10,8 @@
             "lat": -104.778601955,
             "lng": -104.503535348
         },
+        "city": "Regina",
+        "region": "SK",
         "filename": "regina_polls.json"
     }
 ]

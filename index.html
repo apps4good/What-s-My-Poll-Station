@@ -34,9 +34,7 @@
                 <input type="submit" value="Go!" class="btn" />
                 <div id="address-loader" style="visibility:hidden"></div>
             </form>
-            <p id="address-error" class="error" style="display:none">
-               Unable to find poll station data for your address.
-            </p>
+            <p id="address-error" class="error" style="display:none"></p>
         </div>
         <div id="poll-map-container">
             <div id="poll-map"></div>
@@ -44,6 +42,12 @@
                 <h3>Your nearest station <em></em> is<span></span></h3>
                 <p class="street">
                 </p>
+            </div>
+            <div id="supported-cities" class="info-container" style="display:none">
+                <h2>We support the following cities:</h2>
+                <ul>
+
+                </ul>
             </div>
         </div>
     </div>
@@ -67,7 +71,8 @@
                 $address_submit: $('#address input[type="submit"]'),
                 $address_loader: $('#address-loader'),
                 $address_error: $('#address-error'),
-                $poll_map_container: $('#poll-map-container')
+                $poll_map_container: $('#poll-map-container'),
+                $supported_cities: $('#supported-cities')
             });
         });
     </script>

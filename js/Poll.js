@@ -4,6 +4,7 @@
 
     w.PollStation = {
 
+        lookupTable: null,
         gmap: null,
         defaults: {
             $map: null,
@@ -20,8 +21,7 @@
             $address_form: null,
             $address_loader: null,
             $address_error: null,
-            address_panel_height: '130px', // @TODO: Make this auto calculate.
-            address_panel_height_with_error: '168px' // @TODO: Make this auto calculate.
+            $supported_cities: null
         },
 
         init: function(opts) {
@@ -70,6 +70,7 @@
                 e.preventDefault();
                 var address = self.opts.$address_input.val();
                 self.opts.$address_loader.css('visibility', 'visible');
+                self.resetCityNotSupported();
                 self.didGetLatLngFromAddress(address, function(lat, lng){
                     var position = {
                         coords: {
@@ -92,19 +93,20 @@
 
         slideAddressPanelDown: function(showing_with_error){
             this.opts.$poll_map_container.animate({
-                marginTop: (showing_with_error) ? this.opts.address_panel_height_with_error : this.opts.address_panel_height
+                marginTop: this.opts.$address.outerHeight(true)
             });
         },
 
         resetAddressPanel: function(){
             this.slideAddressPanelUp();
-            this.opts.$address_error.hide();
-            this.opts.$address_input.val('');
+            this.hideAddressError();
         },
 
         didGetLatLngFromAddress: function(address, callback) {
 
             var geocoder = new google.maps.Geocoder();
+            var self = this;
+
             geocoder.geocode({ address: address }, function(results, status) {
                 if (status == google.maps.GeocoderStatus.OK && results && results.length) {
                     callback(results[0].geometry.location.Xa, results[0].geometry.location.Ya);
@@ -116,7 +118,10 @@
         },
 
         error: function(msg){
+
+            this.opts.$address_loader.hide();
             console.error(msg);
+
         },
 
         postMapRender: function(){
@@ -233,20 +238,50 @@
             var fileName;
             var self = this;
 
+            console.log(position);
             fileName = this.filenameForPosition(position, self.lookupTable);
+
             if (fileName) {
                 $.ajax({
                     url: 'data/' + fileName,
                     dataType: 'json',
                     success: cb,
                     error: function(){
-                        console.error(arguments);
+                        self.error(arguments);
                     }
                 });
             } else {
-                self.opts.$address_error.show();
-                self.slideAddressPanelDown(true);
+                self.cityNotSupported();
             }
+        },
+
+        resetCityNotSupported: function(){
+
+            this.resetAddressPanel();
+            this.opts.$supported_cities.hide();
+            this.opts.$map.show();
+
+        },
+
+        cityNotSupported: function(){
+
+            this.showAddressError('Unable to find poll station data for your address.');
+            this.opts.$address.show();
+            this.opts.$loader.hide();
+            this.opts.$map.hide();
+            this.slideAddressPanelDown(true);
+
+            var supported_cities_html = '<li>' + this.getSupportedCities().join('</li><li>') + '</li>';
+            this.opts.$supported_cities.show().find('ul').html(supported_cities_html);
+
+        },
+
+        hideAddressError: function(){
+            this.opts.$address_error.hide();
+        },
+
+        showAddressError: function(msg){
+            this.opts.$address_error.html(msg).show();
         },
 
         /**
@@ -307,6 +342,19 @@
             }
 
             return ret;
+        },
+
+        getSupportedCities: function(){
+
+            var ret = [];
+            var lookupTable = this.lookupTable;
+
+            for (var i = 0, l = lookupTable.length; i < l; i++) {
+                ret.push(lookupTable[i].city + ', ' + lookupTable[i].region);
+            }
+
+            return ret;
+
         },
 
         /**
