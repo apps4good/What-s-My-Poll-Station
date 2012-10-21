@@ -146,8 +146,13 @@
 
             fileName = this.filenameForPosition(position, lookupTable);
             if (fileName) {
-                $.getJSON('data/' + fileName, function(data) {
-                    cb(data);
+                $.ajax({
+                    url: 'data/' + fileName,
+                    dataType: 'json',
+                    success: cb,
+                    error: function(){
+                        console.error(arguments);
+                    }
                 });
             } else {
                 console.error('no matching poll data file found');
