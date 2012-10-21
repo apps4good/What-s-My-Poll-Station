@@ -217,6 +217,9 @@ def generate_polls_saskatoon(infile, outfile):
         ## @var name
         # Contains the name for this Saskatoon voting location
         name = placemark.getElementsByTagName('name')[0].firstChild.nodeValue
+        # Sanitize for 'St. Paul School' in Saskatoon's Open Data dataset
+        # Does not negatively affect the other results
+        name = name.split('\n')[0]
         ## @var point
         # Contains the Point data from this row entry
         point = placemark.getElementsByTagName('Point')[0]
