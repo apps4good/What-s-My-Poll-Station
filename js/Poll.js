@@ -249,8 +249,8 @@
         */
         didGetCurrentPosition: function (position) {
             var self = this;
-            var lat = position.coords.latitude,
-                lng = position.coords.longitude;
+            var lat = this.lat = position.coords.latitude,
+                lng = this.lng = position.coords.longitude;
             var center = new google.maps.LatLng(lat, lng),
                 marker,
                 markerPos;
