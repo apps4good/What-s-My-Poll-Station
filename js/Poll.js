@@ -20,7 +20,8 @@
             $address_form: null,
             $address_loader: null,
             $address_error: null,
-            address_panel_height: '130px'
+            address_panel_height: '130px', // @TODO: Make this auto calculate.
+            address_panel_height_with_error: '168px' // @TODO: Make this auto calculate.
         },
 
         init: function(opts) {
@@ -87,10 +88,16 @@
             });
         },
 
-        slideAddressPanelDown: function(){
+        slideAddressPanelDown: function(showing_with_error){
             this.opts.$poll_map_container.animate({
-                marginTop: this.opts.address_panel_height
+                marginTop: (showing_with_error) ? this.opts.address_panel_height_with_error : this.opts.address_panel_height
             });
+        },
+
+        resetAddressPanel: function(){
+            this.slideAddressPanelUp();
+            this.opts.$address_error.hide();
+            this.opts.$address_input.val('');
         },
 
         didGetLatLngFromAddress: function(address, callback) {
@@ -230,6 +237,7 @@
             } else {
                 self.error('No matching poll data file found');
                 self.opts.$address_error.show();
+                self.slideAddressPanelDown(true);
             }
         },
 
@@ -264,6 +272,7 @@
                     self.opts.$nearest_station_ward.text(ward_text);
                     self.opts.$nearest_station_name.text(nearestPoll.properties.name);
                     self.opts.$nearest_station.show();
+                    self.resetAddressPanel();
                 }
             });
         },
