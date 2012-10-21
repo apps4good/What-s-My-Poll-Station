@@ -8,6 +8,8 @@ Election.  The following cities are planned to work with this application:
 * Regina
 * Saskatoon (work in progress, with limited Open Data)
 
+![What's My Poll Station Example](https://github.com/apps4good/What-s-My-Poll-Station/blob/master/img/wheres-my-poll.png)
+
 Running What's My Poll Station
 ------------------------------
 
