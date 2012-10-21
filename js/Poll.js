@@ -340,10 +340,11 @@
                 markers[i].setMap(null);
                 infoWindows[i].close();
             }
+            if (this.directionsDisplay) { this.directionsDisplay.setMap(null); }
 
             // Get the nearest poll.
             var nearestPoll = this.nearestPollForPosition(position, pollData);
-            var directionsDisplay = new google.maps.DirectionsRenderer({
+            var directionsDisplay = this.directionsDisplay = new google.maps.DirectionsRenderer({
                 map: this.gmap,
                 markerOptions: {
                     animation: google.maps.Animation.DROP
