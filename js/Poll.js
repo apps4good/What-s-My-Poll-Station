@@ -55,7 +55,7 @@
 
             self.opts.$edit_location.bind('click', function(e){
                 e.preventDefault();
-                var animate_method = self.opts.$poll_map_container.css('marginTop') == '0px' ? 'slideAddressPanelDown' : 'slideAddressPanelUp';
+                var animate_method = self.opts.$poll_map_container.css('marginTop') === '0px' ? 'slideAddressPanelDown' : 'slideAddressPanelUp';
                 self[animate_method]();
                 });
 
@@ -141,7 +141,7 @@
             var geocoder = new google.maps.Geocoder();
 
             geocoder.geocode({ address: address }, function(results, status) {
-                if (status == google.maps.GeocoderStatus.OK && results && results.length) {
+                if (status === google.maps.GeocoderStatus.OK && results && results.length) {
                     callback(results[0].geometry.location.Xa, results[0].geometry.location.Ya);
                 } else {
                     self.error("Geocode was not successful for the following reason: " + status);
@@ -251,14 +251,13 @@
             var self = this;
             var lat = position.coords.latitude,
                 lng = position.coords.longitude;
-
-            this.lat = lat;
-            this.lng = lng;
-
-            var center = new google.maps.LatLng(lat, lng);
+            var center = new google.maps.LatLng(lat, lng),
+                marker,
+                markerPos;
 
             // Update the map immediately.
             this.gmap.setCenter(center);
+            this.addPollMarker(this.gmap, position.coords.latitude, position.coords.longitude, "You", "<strong>You</strong>");
 
             // Attempt to get poll data for the position.
             this.getPollData(position, function(pollData) {
@@ -328,7 +327,19 @@
             var lat = position.coords.latitude,
                 lng = position.coords.longitude;
             var start = new google.maps.LatLng(lat, lng);
-            var self = this;
+            var self = this,
+                markers = this.markers,
+                infoWindows = this.infoWindows;
+
+            if (!markers) { markers = this.markers = []; }
+            if (!infoWindows) { markers = this.infoWindows = []; }
+
+            // Clear previous markers and info windows.
+            var i;
+            for (i = markers.length - 1; i >= 0; i--) {
+                markers[i].setMap(null);
+                infoWindows[i].close();
+            }
 
             // Get the nearest poll.
             var nearestPoll = this.nearestPollForPosition(position, pollData);
@@ -336,7 +347,8 @@
                 map: this.gmap,
                 markerOptions: {
                     animation: google.maps.Animation.DROP
-                }
+                },
+                suppressMarkers: true
             });
 
             var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
@@ -348,7 +360,20 @@
 
             var directionsService = new google.maps.DirectionsService();
             directionsService.route(request, function(response, status) {
+                var infoWindow,
+                    marker,
+                    markerPos,
+                    numLegs;
+
                 if (status === google.maps.DirectionsStatus.OK) {
+                    // Figure out the start and end points of the route.
+                    start = response.routes[0].legs[0].start_location;
+                    self.addPollMarker(self.gmap, start.lat(), start.lng(), "You", "<strong>You</strong>");
+
+                    numLegs = response.routes[0].legs.length;
+                    end = response.routes[0].legs[numLegs - 1].end_location;
+                    self.addPollMarker(self.gmap, end.lat(), end.lng(), nearestPoll.properties.name, '<strong>' + nearestPoll.properties.name + '</strong><br>' + nearestPoll.address);
+
                     directionsDisplay.setDirections(response);
                     self.postMapRender();
                     self.opts.$loader.hide();
@@ -362,20 +387,45 @@
             });
 
             // Plot all the polls on the map.
-            var i;
             for (i = pollData.length - 1; i >= 0; i--) {
-                var marker,
+                var infoWindow,
+                    marker,
+                    markerPos,
                     poll = pollData[i];
 
-                if (poll !== nearestPoll) {
-                    position = new google.maps.LatLng(poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
-                    marker = new google.maps.Marker({
-                        animation: google.maps.Animation.DROP,
-                        map: this.gmap,
-                        position: position,
-                    });
+                if (nearestPoll !== poll && nearestPoll.ward === poll.ward) {
+                    this.addPollMarker(this.gmap, poll.geometry.coordinates[0], poll.geometry.coordinates[1], poll.properties.name, '<strong>' + poll.properties.name + '</strong><br>' + poll.address);
                 }
             }
+        },
+
+        addPollMarker: function(map, lat, lng, title, infoTitle) {
+            var marker,
+                markerPos,
+                markers = this.markers,
+                infoWindow,
+                infoWindows = this.infoWindows;
+
+            if (!markers) { markers = this.markers = []; }
+            if (!infoWindows) { infoWindows = this.infoWindows = []; }
+
+            markerPos = new google.maps.LatLng(lat, lng);
+            marker = new google.maps.Marker({
+                animation: google.maps.Animation.DROP,
+                map: map,
+                position: markerPos,
+                title: title
+            });
+            markers.push(marker);
+
+            infoWindow = new google.maps.InfoWindow({
+                content: infoTitle
+            });
+            infoWindows.push(infoWindow);
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.open(map, marker);
+            });
         },
 
         /**
