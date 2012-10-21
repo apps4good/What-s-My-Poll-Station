@@ -89,6 +89,10 @@ h1 {
     padding: 10px;
 }
 
+#nearest-station em {
+    font-style: normal;
+}
+
 .info-container {
     text-align: center;
     padding: 20px;
