@@ -68,7 +68,10 @@
 
             self.opts.$address_form.bind('submit', function(e){
                 e.preventDefault();
-                var address = self.opts.$address_input.val();
+                var address = $.trim(self.opts.$address_input.val());
+                if(!address){
+                    return;
+                }
                 self.opts.$address_loader.css('visibility', 'visible');
                 self.resetCityNotSupported();
                 self.didGetLatLngFromAddress(address, function(lat, lng){
@@ -238,7 +241,6 @@
             var fileName;
             var self = this;
 
-            console.log(position);
             fileName = this.filenameForPosition(position, self.lookupTable);
 
             if (fileName) {
@@ -269,6 +271,7 @@
             this.opts.$address.show();
             this.opts.$loader.hide();
             this.opts.$map.hide();
+            this.opts.$nearest_station.hide();
             this.slideAddressPanelDown(true);
 
             var supported_cities_html = '<li>' + this.getSupportedCities().join('</li><li>') + '</li>';
