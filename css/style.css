@@ -59,6 +59,10 @@ h1 {
     border-radius: 6px;
 }
 
+#title {
+    text-decoration: none;
+}
+
 #poll-map-container {
     position: absolute;
     width: 100%;

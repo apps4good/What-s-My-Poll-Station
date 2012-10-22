@@ -363,7 +363,11 @@
 
             // Get the nearest poll.
             var ward = this.nearestWardForPosition(position);
-            var nearestPoll = this.nearestPollForPosition(position, pollData, ward);
+            var wardPoly = (ward && ward.poly) ? ward.poly : null;
+            var nearestPoll = this.nearestPollForPosition(position, pollData, wardPoly);
+            if(!nearestPoll.ward && ward && ward.ward){
+                nearestPoll.ward = ward.ward;
+            }
             var directionsDisplay = this.directionsDisplay = new google.maps.DirectionsRenderer({
                 map: this.gmap,
                 markerOptions: {
@@ -508,7 +512,7 @@
                 Poly.setMap(this.gmap);
 
                 if(Poly.contains(latlng)){
-                    ret = Poly;
+                    ret = { poly: Poly, ward: this.wards[i].ward };
                 }
             };
 
