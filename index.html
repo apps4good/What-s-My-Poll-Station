@@ -55,7 +55,17 @@
     <script type="text/javascript">
 
         $(function(){
+//            window.testPosition = function(){
+//                return {
+//                    coords: {
+//                        latitude: 52.101975,
+//                        longitude: -106.625977
+//                    }
+//                }
+//            };
+
             PollStation.init({
+                $toolbar: $('h1'),
                 $loader: $('#loader'),
                 $map: $('#poll-map'),
                 $nearest_station: $('#nearest-station'),

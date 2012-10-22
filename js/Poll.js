@@ -1,5 +1,4 @@
 /*globals $, navigator, google*/
-
 (function(w) {
 
     w.PollStation = {
@@ -8,8 +7,10 @@
         gmap: null,
         lat: null,
         lng: null,
+        wards: [],
 
         defaults: {
+            $toolbar: null,
             $map: null,
             $edit_location: null,
             $address: null,
@@ -60,13 +61,20 @@
                 });
 
             $(window).bind('resize orientationchange', function(){
-                if(self.opts.$loader.is(':hidden')){
-                    $(this).unbind('resize orientationchange');
+
+                // Only do calculations if our loader is still on the screen
+                if(self.opts.$loader.is(':visible')){
+                    self.opts.$loader.css({
+                        top: ($(window).height() / 2) - (self.opts.$loader.outerHeight() / 2),
+                        left: ($(window).width() / 2) - (self.opts.$loader.outerWidth() / 2)
+                    });
                 }
-                self.opts.$loader.css({
-                    top: ($(window).height() / 2) - (self.opts.$loader.outerHeight() / 2),
-                    left: ($(window).width() / 2) - (self.opts.$loader.outerWidth() / 2)
-                });
+
+                var toolbar_height = self.opts.$toolbar.outerHeight();
+                var nearest_station_height = self.opts.$nearest_station.outerHeight();
+                var height = $(window).outerHeight() - (toolbar_height + nearest_station_height);
+                self.opts.$map.height(height);
+
             }).trigger('resize');
 
             self.opts.$address_form.bind('submit', function(e){
@@ -162,6 +170,7 @@
             var self = this;
 
             self.opts.$address.show();
+            $(window).trigger('resize');
 
         },
 
@@ -232,6 +241,9 @@
             if (navigator && navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     // Wrap our call to fix context of `this`.
+                    if($.isFunction(window.testPosition)){
+                        position = window.testPosition();
+                    }
                     self.didGetCurrentPosition(position);
                 }, function(error){
                     self.geoError(error);
@@ -257,7 +269,7 @@
 
             // Update the map immediately.
             this.gmap.setCenter(center);
-            this.addPollMarker(this.gmap, position.coords.latitude, position.coords.longitude, "You", "<strong>You</strong>");
+            //this.addPollMarker(this.gmap, position.coords.latitude, position.coords.longitude, "You", "<strong>You</strong>");
 
             // Attempt to get poll data for the position.
             this.getPollData(position, function(pollData) {
@@ -276,15 +288,36 @@
 
             fileName = this.filenameForPosition(position, self.lookupTable);
 
-            if (fileName) {
-                $.ajax({
-                    url: 'data/' + fileName,
-                    dataType: 'json',
-                    success: cb,
-                    error: function(){
-                        self.error(arguments);
-                    }
-                });
+            if (fileName.filename) {
+
+                function getPolls(cb){
+                    $.ajax({
+                        url: 'data/' + fileName.filename,
+                        dataType: 'json',
+                        success: cb,
+                        error: function(){
+                            self.error(arguments);
+                        }
+                    });
+                }
+
+                // Saskatoon
+                if(fileName.ward_filename){
+                    $.ajax({
+                        url: 'data/' + fileName.ward_filename,
+                        dataType: 'json',
+                        success: function(data){
+                            self.wards = data;
+                            getPolls(cb);
+                        },
+                        error: function(){
+                            self.error(arguments);
+                        }
+                    });
+                } else {
+                    getPolls(cb);
+                }
+
             } else {
                 self.cityNotSupported();
             }
@@ -342,13 +375,13 @@
             if (this.directionsDisplay) { this.directionsDisplay.setMap(null); }
 
             // Get the nearest poll.
-            var nearestPoll = this.nearestPollForPosition(position, pollData);
+            var ward = this.nearestWardForPosition(position);
+            var nearestPoll = this.nearestPollForPosition(position, pollData, ward);
             var directionsDisplay = this.directionsDisplay = new google.maps.DirectionsRenderer({
                 map: this.gmap,
                 markerOptions: {
                     animation: google.maps.Animation.DROP
-                },
-                suppressMarkers: true
+                }
             });
 
             var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
@@ -368,7 +401,7 @@
                 if (status === google.maps.DirectionsStatus.OK) {
                     // Figure out the start and end points of the route.
                     start = response.routes[0].legs[0].start_location;
-                    self.addPollMarker(self.gmap, start.lat(), start.lng(), "You", "<strong>You</strong>");
+                    //self.addPollMarker(self.gmap, start.lat(), start.lng(), "You", "<strong>You</strong>");
 
                     numLegs = response.routes[0].legs.length;
                     end = response.routes[0].legs[numLegs - 1].end_location;
@@ -393,7 +426,7 @@
                     markerPos,
                     poll = pollData[i];
 
-                if (nearestPoll !== poll && nearestPoll.ward === poll.ward) {
+                if (nearestPoll !== poll && nearestPoll.ward && nearestPoll.ward === poll.ward) {
                     this.addPollMarker(this.gmap, poll.geometry.coordinates[0], poll.geometry.coordinates[1], poll.properties.name, '<strong>' + poll.properties.name + '</strong><br>' + poll.address);
                 }
             }
@@ -428,18 +461,96 @@
             });
         },
 
-        /**
-            Iterates the poll data and returns the poll info for the nearest.
-        */
-        nearestPollForPosition: function(position, pollData) {
+        nearestWardForPosition: function(position){
+
+            google.maps.Polygon.prototype.contains = function(latLng)
+            {
+                var j = 0;
+                var oddNodes = false;
+                var x = latLng.lng();
+                var y = latLng.lat();
+                for (var i = 0; i < this.getPath().getLength(); i++) {
+                    j++;
+                    if (j == this.getPath().getLength()) { j = 0; }
+                    if (((this.getPath().getAt(i).lat() < y) &&
+                        (this.getPath().getAt(j).lat() >= y))
+                        || ((this.getPath().getAt(j).lat() < y) &&
+                        (this.getPath().getAt(i).lat() >= y))) {
+                        if (this.getPath().getAt(i).lng() + (y -
+                            this.getPath().getAt(i).lat())
+                            / (this.getPath().getAt(j).lat() -
+                            this.getPath().getAt(i).lat())
+                            * (this.getPath().getAt(j).lng() -
+                            this.getPath().getAt(i).lng()) < x) {
+                            oddNodes = !oddNodes
+                        }
+                    }
+                }
+                return oddNodes;
+            }
+
             var distance = Infinity,
                 ret = null,
                 sourceLat = position.coords.latitude,
                 sourceLong = position.coords.longitude;
 
-            var i;
-            for (i = pollData.length - 1; i >= 0; i--) {
+            var latlng = new google.maps.LatLng(sourceLat, sourceLong);
+
+            for(var i = 0; i < this.wards.length; i++){
+                var sets = this.wards[i].coords.split(',0');
+                var poly = [];
+                for(var s = 0; s < sets.length; s++){
+                    if(sets[s]){
+                        var ll = sets[s].split(',');
+                        var lat = ll[1];
+                        var lng = ll[0];
+                        poly.push(new google.maps.LatLng(lat, lng));
+                    }
+                }
+
+                var Poly = new google.maps.Polygon({
+                    paths: poly,
+                    strokeColor: "transparent",
+                    strokeOpacity: 0,
+                    strokeWeight: 0,
+                    fillColor: "transparent",
+                    fillOpacity: 0
+                });
+
+                Poly.setMap(this.gmap);
+
+                if(Poly.contains(latlng)){
+                    ret = Poly;
+                }
+            };
+
+            return ret;
+
+        },
+
+        /**
+            Iterates the poll data and returns the poll info for the nearest.
+        */
+        nearestPollForPosition: function(position, pollData, wardPoly) {
+            var distance = Infinity,
+                ret = null,
+                sourceLat = position.coords.latitude,
+                sourceLong = position.coords.longitude;
+
+            var possiblePolls = [];
+            for (var i = pollData.length - 1; i >= 0; i--) {
                 var poll = pollData[i];
+                if(wardPoly){
+                    if(wardPoly.contains(new google.maps.LatLng(poll.geometry.coordinates[0], poll.geometry.coordinates[1]))){
+                        possiblePolls.push(poll);
+                    }
+                } else {
+                    possiblePolls.push(poll);
+                }
+            }
+
+            for(var i = 0; i < possiblePolls.length; i++){
+                var poll = possiblePolls[i];
                 var newDistance = this.distance(sourceLat, sourceLong, poll.geometry.coordinates[0], poll.geometry.coordinates[1]);
 
                 // Each time we find a closer poll, store it.
@@ -484,7 +595,7 @@
                 rect.height = pollDataFileInfo.topLeft.lat - rect.y;
 
                 if (this.pointInRect(point, rect)) {
-                    ret = pollDataFileInfo.filename;
+                    ret = pollDataFileInfo;
                 }
             }
 

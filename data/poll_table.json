@@ -26,6 +26,7 @@
             "lng": -106.503862
         },
         "filename": "saskatoon_polls.json",
+        "ward_filename": "saskatoon_wards.json",
         "city": "Saskatoon",
         "region": "SK"
     }
