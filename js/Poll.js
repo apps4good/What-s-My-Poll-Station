@@ -176,36 +176,20 @@
 
         geocodeNotSupported: function(callback) {
 
-            var position = {};
-            // default lat lon for Regina, SK.
-            // for testing only!!
+            var position = null;
 
-            position.latitude = 50.4579;
-            position.longitude = -104.606;
-
-            /*var url = "http://www.geoplugin.net/json.gp?jsoncallback=?";
-            // Utilize the JSONP API
-            $.getJSON(url, function(data) {
-                if(data['geoplugin_status'] == 200) {
-                    position.latitude = data['geoplugin_latitude'];
-                    position.logitude = data['geoplugin_longitude'];
+            $.getJSON("http://www.geoplugin.net/json.gp?jsoncallback=?", function(data) {
+                if(data.geoplugin_status == 200) {
+                    position = {
+                        coords: {
+                            latitude: data.geoplugin_latitude,
+                            longitude: data.geoplugin_longitude
+                        }
+                    };
                 }
-            });*/
-            callback(position);
-        },
-
-/*
-        geocodeByIP: function(cb) {
-            var url = "http://www.geoplugin.net/json.gp?jsoncallback=?";
-            // Utilize the JSONP API
-            $.getJSON(url, function(data) {
-                if(data['geoplugin_status'] == 200) {
-                    position.latitude = data['geoplugin_latitude'];
-                    position.logitude = data['geoplugin_longitude'];
-                }
+                callback(position);
             });
         },
-*/
 
         /**
             Gets the poll data lookup table.   This table is used to find the
@@ -250,9 +234,12 @@
                 });
             } else {
                 self.geocodeNotSupported(function(position){
-                    self.getClosestPoll(position.latitude, position.longitude);
+                    if(position){
+                        self.didGetCurrentPosition(position);
+                    } else {
+                        alert('Sorry, we could not get your location.');
+                    }
                 });
-                //alert('Your browser does not support geolocation');
             }
         },
 
