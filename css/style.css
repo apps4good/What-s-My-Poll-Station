@@ -255,3 +255,10 @@ p {
     border-color: #c5c5c5;
     border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);
 }
+
+#credits {
+    text-align: center;
+    margin: 10px 0;
+    display: block;
+    font-size: 80%;
+}
