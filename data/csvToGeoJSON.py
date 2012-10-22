@@ -235,7 +235,9 @@ def generate_jsonpolls(outfile):
             "lat": %s,
             "lng": %s
         },
-        "filename": "%s"
+        "filename": "%s",
+		"city": "%s",
+		"region": "%s"
     }'''
     
     reginapoints = generate_jsonpoll_regina('ReginaCityLimits.kml')
@@ -247,7 +249,7 @@ def generate_jsonpolls(outfile):
     
     # Add to the list
     inneroutput.append(template % (maxlat, minlon, minlat, maxlon,
-        'regina_polls.json'))
+        'regina_polls.json', 'Regina', 'SK'))
     
     saskatoonpoints = generate_jsonpoll_saskatoon(
             'SaskatoonElection2012.kml')
@@ -260,7 +262,7 @@ def generate_jsonpolls(outfile):
     
     # Add to the list
     inneroutput.append(template % (maxlat, minlon, minlat, maxlon,
-        'saskatoon_polls.json'))
+        'saskatoon_polls.json', 'Saskatoon', 'SK'))
     
     # Join the output and comma separate, also needed for no trailing comma
     output += ''',

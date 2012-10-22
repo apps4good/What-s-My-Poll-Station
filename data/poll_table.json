@@ -11,8 +11,8 @@
             "lng": -104.503535348
         },
         "filename": "regina_polls.json",
-        "city": "Regina",
-        "region": "SK"
+		"city": "Regina",
+		"region": "SK"
     },
     {
         "topLeft":
@@ -26,7 +26,7 @@
             "lng": -106.503862
         },
         "filename": "saskatoon_polls.json",
-        "city": "Saskatoon",
-        "region": "SK"
+		"city": "Saskatoon",
+		"region": "SK"
     }
 ]
