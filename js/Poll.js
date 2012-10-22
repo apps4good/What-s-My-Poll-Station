@@ -394,6 +394,7 @@
                     end = response.routes[0].legs[numLegs - 1].end_location;
                     self.addPollMarker(self.gmap, end.lat(), end.lng(), nearestPoll.properties.name, '<strong>' + nearestPoll.properties.name + '</strong><br>' + nearestPoll.address);
 
+                    directionsDisplay.setMap(self.gmap);
                     directionsDisplay.setDirections(response);
                     self.opts.$loader.hide();
                     var ward_text = (parseInt(nearestPoll.ward, 10) > 0) ? 'in ward ' + nearestPoll.ward : '';
