@@ -23,7 +23,7 @@
         <a href="#" id="edit-location-btn">
             <span>edit</span>
         </a>
-        <a href="http://whereismypoll.com" id="title" target="_parent">Where is my poll?</a>
+        <a href="http://whereismypoll.com" target="_parent">Where is my poll?</a>
     </h1>
 
     <div id="main-map">
@@ -44,6 +44,7 @@
                 <h3>Your nearest station <em></em> is<span></span></h3>
                 <p class="street">
                 </p>
+                <a href="#" id="not-in-ward">Not in your ward right now? Search by address.</a>
             </div>
             <div id="supported-cities" class="info-container" style="display:none">
                 <h2>We support the following cities:</h2>
@@ -84,7 +85,8 @@
                 $address_error: $('#address-error'),
                 $poll_map_container: $('#poll-map-container'),
                 $supported_cities: $('#supported-cities'),
-                $credits: $('#credits')
+                $credits: $('#credits'),
+                $not_in_ward: $('#not-in-ward')
             });
         });
     </script>

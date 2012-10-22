@@ -26,7 +26,8 @@
             $address_loader: null,
             $address_error: null,
             $supported_cities: null,
-            $credits: null
+            $credits: null,
+            $not_in_ward: null
         },
 
         init: function(opts) {
@@ -59,7 +60,7 @@
                 e.preventDefault();
                 var animate_method = self.opts.$poll_map_container.css('marginTop') === '0px' ? 'slideAddressPanelDown' : 'slideAddressPanelUp';
                 self[animate_method]();
-                });
+            });
 
             $(window).bind('resize orientationchange', function(){
 
@@ -71,9 +72,9 @@
                     });
                 }
 
-                var toolbar_height = self.opts.$toolbar.outerHeight();
-                var nearest_station_height = self.opts.$nearest_station.outerHeight();
-                var credits_height = self.opts.$credits.outerHeight();
+                var toolbar_height = self.opts.$toolbar.outerHeight(true);
+                var nearest_station_height = self.opts.$nearest_station.outerHeight(true);
+                var credits_height = self.opts.$credits.outerHeight(true);
                 var height = $(window).outerHeight() - (toolbar_height + nearest_station_height + credits_height);
                 self.opts.$map.height(height);
 
@@ -97,6 +98,11 @@
                     self.opts.$address_loader.css('visibility', 'hidden');
                     self.didGetCurrentPosition(position);
                 });
+            });
+
+            self.opts.$not_in_ward.bind('click', function(e){
+                e.preventDefault();
+                self.slideAddressPanelDown();
             });
 
         },

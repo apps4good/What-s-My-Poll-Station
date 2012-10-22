@@ -8,7 +8,8 @@ body {
 }
 
 a {
-    color: #333;
+    color: #6eacc7;
+    text-decoration: none;
 }
 
 .error {
@@ -36,6 +37,10 @@ h1 {
     background-image:         linear-gradient(to bottom, #eeeeee, #ccc);
 }
 
+h1 a {
+    color: #333;
+}
+
 #edit-location-btn {
     text-indent: -9999px;
     display: block;
@@ -57,10 +62,6 @@ h1 {
     display: block;
     padding-top: 3px;
     border-radius: 6px;
-}
-
-#title {
-    text-decoration: none;
 }
 
 #poll-map-container {
@@ -122,7 +123,7 @@ h1 {
 
 #nearest-station .street {
     font-size: 0.9em;
-    margin-bottom: 0;
+    margin: 2px 0;
 }
 
 .info-container {
@@ -152,6 +153,12 @@ h3 span {
 
 p {
     display: block;
+}
+
+#not-in-ward {
+    display: block;
+    margin: 15px 0 0 0;
+    text-decoration: underline;
 }
 
 #loader {
