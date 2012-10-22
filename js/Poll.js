@@ -395,7 +395,6 @@
                     self.addPollMarker(self.gmap, end.lat(), end.lng(), nearestPoll.properties.name, '<strong>' + nearestPoll.properties.name + '</strong><br>' + nearestPoll.address);
 
                     directionsDisplay.setDirections(response);
-                    self.postMapRender();
                     self.opts.$loader.hide();
                     var ward_text = (parseInt(nearestPoll.ward, 10) > 0) ? 'in ward ' + nearestPoll.ward : '';
                     self.opts.$nearest_station_ward.text(ward_text);
@@ -403,6 +402,7 @@
                     self.opts.$nearest_station_street.text(nearestPoll.address);
                     self.opts.$nearest_station.show();
                     self.resetAddressPanel();
+                    self.postMapRender();
                 }
             });
 
