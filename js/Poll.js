@@ -25,7 +25,8 @@
             $address_form: null,
             $address_loader: null,
             $address_error: null,
-            $supported_cities: null
+            $supported_cities: null,
+            $credits: null
         },
 
         init: function(opts) {
@@ -72,7 +73,8 @@
 
                 var toolbar_height = self.opts.$toolbar.outerHeight();
                 var nearest_station_height = self.opts.$nearest_station.outerHeight();
-                var height = $(window).outerHeight() - (toolbar_height + nearest_station_height);
+                var credits_height = self.opts.$credits.outerHeight();
+                var height = $(window).outerHeight() - (toolbar_height + nearest_station_height + credits_height);
                 self.opts.$map.height(height);
 
             }).trigger('resize');

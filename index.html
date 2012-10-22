@@ -7,11 +7,10 @@
     <meta name="author" content="Tyler Keating, Jordan Boesch, Daniel Pronych, Andrew Dyck">
     <meta name="description" content="Finds your polling station using GPS. We support the following cities: Regina, Saskatoon" />
 
-    <title>Where is my poll? - an Apps4Good.ca creation</title>
+    <title>Where is my poll? - an Apps4Good.ca creation by Tyler Keating, Jordan Boesch, Daniel Pronych, Andrew Dyck</title>
 
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" media="screen and (max-device-width: 900px)" href="css/mobile.css" />
 
     <script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
     <base target="_parent" />
@@ -50,7 +49,7 @@
                 <h2>We support the following cities:</h2>
                 <ul></ul>
             </div>
-            <a href="http://apps4good.ca" id="credits">An Apps4Good.ca creation</a>
+            <a href="http://apps4good.ca" id="credits" target="_blank">An Apps4Good.ca creation</a>
         </div>
     </div>
 
@@ -84,7 +83,8 @@
                 $address_loader: $('#address-loader'),
                 $address_error: $('#address-error'),
                 $poll_map_container: $('#poll-map-container'),
-                $supported_cities: $('#supported-cities')
+                $supported_cities: $('#supported-cities'),
+                $credits: $('#credits')
             });
         });
     </script>
