@@ -54,7 +54,6 @@ h1 {
 #edit-location-btn span {
     border-top: 1px solid #ccc;
     background: url(../img/locate.png) no-repeat center;
-    background-size: 20px 20px;
     display: block;
     padding-top: 3px;
     border-radius: 6px;
