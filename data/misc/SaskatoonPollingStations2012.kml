@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="Polling_Stations_2012 layer">
+  <name>Polling_Stations_2012 layer</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>Polling_Stations_2012 layer</name>
+  <Snippet></Snippet>
+    <Placemark>
+      <name>Forest Grove School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.587139,52.143338,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sutherland School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.604675,52.139186,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Paul School
+
+St. Paul School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.645760,52.147831,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>First Mennonite Church</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.655599,52.136855,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Michael School (*)</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.666747,52.144211,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Henry Kelsey School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.688107,52.144814,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Caswell School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.671952,52.138928,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Princess Alexandra School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.680740,52.127699,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Mary's Wellness and Education Centre</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.690942,52.125517,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>W.P. Bate School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.710158,52.121586,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Dominic School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.730001,52.108991,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. John School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.691542,52.111976,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>King George School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.686463,52.119175,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Fairhaven School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.730902,52.122819,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Marguerite School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.746087,52.121239,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Father Vachon School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.741597,52.132836,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bishop Roberecki School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.735600,52.138346,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Westmount School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.684864,52.134048,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Howard Coad School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.701666,52.134442,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bishop Klein School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.715116,52.143035,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Dundonald School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.728737,52.146815,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Caroline Robins School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.707799,52.147974,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Peter School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.726644,52.148424,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>River Heights School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.634036,52.163551,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Rusty MacDonald Library Auditorium</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.633666,52.168248,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lawson Heights School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.619462,52.170945,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Silverwood Heights School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.620638,52.181966,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Brownell School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.632123,52.179902,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Saskatoon Public Library</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.660382,52.129525,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Oskayak High School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.656239,52.116136,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cosmopolitan Senior Citizens' Centre</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.655238,52.118615,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Brunskill School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.637994,52.124806,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bishop Murray High School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.639983,52.119240,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Holliston School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.630038,52.110928,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ecole Canadienne-Francaise de Saskatoon</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.647835,52.111264,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Buena Vista School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.669974,52.112316,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Queen Elizabeth School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.658705,52.106431,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Frances School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.666867,52.104027,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Seventh Day Adventist Christian School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.677658,52.102557,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>John Lake School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.658022,52.096303,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>The Willows Golf &#38; Country Club</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.659244,52.077066,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Circle Drive Alliance Church</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.619925,52.087890,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Hugh Cairns School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.639613,52.095225,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Prince Philip  School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.629612,52.094857,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pope John Paul II School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.615483,52.093759,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Holy Cross High School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.614842,52.105073,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Brevoort Park School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.613628,52.108996,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Greystone Heights School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.613177,52.119414,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>College Park School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.594996,52.118262,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Augustine School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.575779,52.120620,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lakewood Civic Centre</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.585666,52.104976,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cliff Wright Library Auditorium</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.585264,52.104378,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bishop Pocock School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.595256,52.107189,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Bernard School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.592323,52.094769,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lakeridge School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.579713,52.095017,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>St. Luke School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.575973,52.094444,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Father Robinson School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.570163,52.139988,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Alice Turner Library</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.581549,52.146940,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Dr. John G. Egnatoff School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.574109,52.140488,0.000000</coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Mother Teresa School</name>
+      <styleUrl>#IconStyle00</styleUrl>
+      <Snippet></Snippet>
+      <Point>
+        <extrude>0</extrude>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <coordinates> -106.590507,52.160952,0.000000</coordinates>
+      </Point>
+    </Placemark>
+  </Folder>
+  <Style id="IconStyle00">
+    <IconStyle>
+      <Icon><href>000000.png</href></Icon>
+      <scale>1.000000</scale>
+    </IconStyle>
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+  </Style>
+</Document>
+</kml>

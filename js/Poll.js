@@ -374,7 +374,7 @@
             var end = new google.maps.LatLng(nearestPoll.geometry.coordinates[0], nearestPoll.geometry.coordinates[1]);
             var request = {
                 origin: start,
-                destination: end,
+                  destination: end,
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
             };
 

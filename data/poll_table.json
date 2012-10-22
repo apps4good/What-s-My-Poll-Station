@@ -11,6 +11,7 @@
             "lng": -104.503535348
         },
         "filename": "regina_polls.json",
+        "ward_filename": "regina_wards.json",
 		"city": "Regina",
 		"region": "SK"
     },
