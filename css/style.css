@@ -258,7 +258,11 @@ p {
 
 #credits {
     text-align: center;
-    margin: 10px 0;
+    margin: 10px auto;
     display: block;
     font-size: 80%;
+    background: url(../img/apps4good.png) no-repeat top left;
+    width: 100px;
+    height: 100px;
+    text-indent: -9999px;
 }
