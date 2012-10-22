@@ -288,7 +288,7 @@
 
             fileName = this.filenameForPosition(position, self.lookupTable);
 
-            if (fileName.filename) {
+            if (fileName && fileName.filename) {
 
                 function getPolls(cb){
                     $.ajax({
