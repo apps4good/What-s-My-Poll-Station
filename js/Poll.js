@@ -371,8 +371,7 @@
 
             // Get the nearest poll.
             var ward = this.nearestWardForPosition(position);
-            var wardPoly = (ward && ward.poly) ? ward.poly : null;
-            var nearestPoll = this.nearestPollForPosition(position, pollData, wardPoly);
+            var nearestPoll = this.nearestPollForPosition(position, pollData, ward);
             if(!nearestPoll.ward && ward && ward.ward){
                 nearestPoll.ward = ward.ward;
             }
@@ -531,20 +530,33 @@
         /**
             Iterates the poll data and returns the poll info for the nearest.
         */
-        nearestPollForPosition: function(position, pollData, wardPoly) {
+        nearestPollForPosition: function(position, pollData, ward) {
             var distance = Infinity,
                 ret = null,
+                self = this,
                 sourceLat = position.coords.latitude,
+                currentWard = null,
                 sourceLong = position.coords.longitude;
 
+            // If we have poll_stations
+
             var possiblePolls = [];
-            for (var i = pollData.length - 1; i >= 0; i--) {
-                var poll = pollData[i];
-                if(wardPoly){
-                    if(wardPoly.contains(new google.maps.LatLng(poll.geometry.coordinates[0], poll.geometry.coordinates[1]))){
-                        possiblePolls.push(poll);
+
+            if(ward && ward.poly && this.wards.length && this.wards[0].poll_stations){
+                if(ward.poly.contains(new google.maps.LatLng(sourceLat, sourceLong))){
+                    // [Poly, Poly]
+                    var keep_coords = self.getPollRegion(ward, sourceLat, sourceLong);
+                    if(keep_coords){
+                        $.each(pollData, function(e, pd){
+                            if(keep_coords.contains(new google.maps.LatLng(pd.geometry.coordinates[0], pd.geometry.coordinates[1]))){
+                                possiblePolls.push(pd);
+                            }
+                        });
                     }
-                } else {
+                }
+            } else {
+                for (var i = pollData.length - 1; i >= 0; i--) {
+                    var poll = pollData[i];
                     possiblePolls.push(poll);
                 }
             }
@@ -561,6 +573,41 @@
             }
 
             return ret;
+        },
+
+        getPollRegion: function(ward, sourceLat, sourceLong){
+
+            var currentWard = ward.ward;
+
+            for(var j = 0, wl = this.wards.length; j < wl; j++){
+                if(this.wards[j].ward == currentWard){
+                    for(var k = 0, pl = this.wards[j].poll_stations.length; k < pl; k++){
+                        var ppoly = [];
+                        var coords = this.wards[j].poll_stations[k].split(',0');
+
+                        for(var t = 0, tl = coords.length; t < tl; t++){
+                            var parts = coords[t].split(',');
+                            var lat = parts[1];
+                            var lng = parts[0];
+                            ppoly.push(new google.maps.LatLng(lat, lng));
+                        }
+
+                        var Poly = new google.maps.Polygon({
+                            paths: ppoly,
+                            strokeColor: "#333333",
+                            strokeOpacity:.5,
+                            strokeWeight: 2,
+                            fillColor: "#cccccc",
+                            fillOpacity: .5
+                        });
+                        Poly.setMap(this.gmap);
+                        if(Poly.contains(new google.maps.LatLng(sourceLat, sourceLong))){
+                            return Poly;
+                        }
+                    }
+                }
+            }
+
         },
 
         getSupportedCities: function(){
