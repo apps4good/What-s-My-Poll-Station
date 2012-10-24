@@ -372,7 +372,7 @@
             // Get the nearest poll.
             var ward = this.nearestWardForPosition(position);
             var nearestPoll = this.nearestPollForPosition(position, pollData, ward);
-            if(!nearestPoll.ward && ward && ward.ward){
+            if(nearestPoll && !nearestPoll.ward && ward && ward.ward){
                 nearestPoll.ward = ward.ward;
             }
             var directionsDisplay = this.directionsDisplay = new google.maps.DirectionsRenderer({
@@ -555,9 +555,16 @@
                     }
                 }
             } else {
+
                 for (var i = pollData.length - 1; i >= 0; i--) {
                     var poll = pollData[i];
-                    possiblePolls.push(poll);
+                    if(ward && ward.ward && poll.ward){
+                        if(poll.ward == ward.ward){
+                            possiblePolls.push(poll);
+                        }
+                    } else {
+                        possiblePolls.push(poll);
+                    }
                 }
             }
 
