@@ -1,0 +1,962 @@
+[
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.143338, -106.587139]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Forest Grove School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.139186, -106.604675]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Sutherland School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.147831, -106.645760]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Paul School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.136855, -106.655599]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "First Mennonite Church"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.144211, -106.666747]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Michael School (*)"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.144814, -106.688107]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Henry Kelsey School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.138928, -106.671952]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Caswell School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.127699, -106.680740]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Princess Alexandra School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.125517, -106.690942]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Mary's Wellness and Education Centre"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.121586, -106.710158]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "W.P. Bate School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.108991, -106.730001]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Dominic School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.111976, -106.691542]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. John School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.119175, -106.686463]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "King George School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.122819, -106.730902]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Fairhaven School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.121239, -106.746087]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Marguerite School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.132836, -106.741597]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Father Vachon School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.138346, -106.735600]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Bishop Roberecki School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.134048, -106.684864]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Westmount School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.134442, -106.701666]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Howard Coad School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.143035, -106.715116]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Bishop Klein School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.146815, -106.728737]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Dundonald School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.147974, -106.707799]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Caroline Robins School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.148424, -106.726644]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Peter School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.163551, -106.634036]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "River Heights School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.168248, -106.633666]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Rusty MacDonald Library Auditorium"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.170945, -106.619462]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Lawson Heights School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.181966, -106.620638]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Silverwood Heights School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.179902, -106.632123]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Brownell School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.129525, -106.660382]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Saskatoon Public Library"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.116136, -106.656239]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Oskayak High School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.118615, -106.655238]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Cosmopolitan Senior Citizens' Centre"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.124806, -106.637994]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Brunskill School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.119240, -106.639983]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Bishop Murray High School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.110928, -106.630038]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Holliston School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.111264, -106.647835]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Ecole Canadienne-Francaise de Saskatoon"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.112316, -106.669974]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Buena Vista School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.106431, -106.658705]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Queen Elizabeth School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.104027, -106.666867]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Frances School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.102557, -106.677658]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Seventh Day Adventist Christian School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.096303, -106.658022]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "John Lake School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.077066, -106.659244]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "The Willows Golf & Country Club"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.087890, -106.619925]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Circle Drive Alliance Church"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.095225, -106.639613]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Hugh Cairns School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.094857, -106.629612]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Prince Philip  School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.093759, -106.615483]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Pope John Paul II School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.105073, -106.614842]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Holy Cross High School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.108996, -106.613628]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Brevoort Park School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.119414, -106.613177]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Greystone Heights School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.118262, -106.594996]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "College Park School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.120620, -106.575779]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Augustine School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.104976, -106.585666]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Lakewood Civic Centre"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.104378, -106.585264]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Cliff Wright Library Auditorium"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.107189, -106.595256]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Bishop Pocock School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.094769, -106.592323]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Bernard School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.095017, -106.579713]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Lakeridge School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.094444, -106.575973]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "St. Luke School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.139988, -106.570163]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Father Robinson School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.146940, -106.581549]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Alice Turner Library"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.140488, -106.574109]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Dr. John G. Egnatoff School"
+        }
+    },
+    {   
+        "poll" : 0,
+        "ward" : 0,
+        "address" : "",
+        "est18_2012" : "",
+        "geometry" : 
+        {
+            "type" : "Point",
+            "coordinates" : [52.160952, -106.590507]
+        },
+        "properties" : 
+        {
+            "entityid" : "", 
+            "name" : "Mother Teresa School"
+        }
+    }
+]

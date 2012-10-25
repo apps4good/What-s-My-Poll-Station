@@ -69,10 +69,9 @@ class GPSPoint():
 
 def generate_jsonpoll_regina(infile):
     """@brief Determine City of Regina Latitude and Longitude
-    limits and return to call (botLeft and topRight)
+    limits and return to caller (botLeft and topRight)
     @param infile Input File
-    @return The output string for Regina
-    @todo Finish the data and then the generation routine."""
+    @return list containing Min Lat, Min Lon, Max Lon, Max Lat."""
     from xml.dom.minidom import parseString
     
     ## @var maxlon
@@ -130,11 +129,11 @@ def generate_jsonpoll_regina(infile):
             maxlat = lat
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
     return [minlon, minlat, maxlon, maxlat]
-    
+
 def generate_jsonpoll_saskatoon(infile):
     """@brief Generate Saskatoon Polls Output Routine
     @param infile Input File
-    @param outfile Output File"""
+	@return list containing Min Lat, Min Lon, Max Lon, Max Lat."""
     
     from xml.dom.minidom import parseString
     
@@ -206,6 +205,77 @@ def generate_jsonpoll_saskatoon(infile):
     
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
     return [minlon, minlat, maxlon, maxlat]
+
+def generate_jsonward_regina(infile, outfile):
+    """@brief Generate Saskatoon Ward Output Routine
+    @param infile Input File
+    @param outfile Input File"""
+    from xml.dom.minidom import parseString
+    
+    ## @var output
+    # Contains the main output
+    output = \
+'''[
+'''
+
+    ## @var inneroutput
+    # Contains the inner output
+    inneroutput = []
+
+    template = \
+    '''\
+    {   
+        "ward" : "%s",
+        "coords" : "%s",
+    }'''
+	
+	## @var fh
+    # The file handle to the City Limits XML/KML file
+    fh = open(infile, 'r')
+    ## @var data
+    # Contains the file contents
+    data = fh.read()
+    if(fh):
+        fh.close()
+    ## @var dom
+    # Contains the DOM object contents
+    dom = parseString(data)
+    ## @var placemark
+    # This data is obtained on a per row basis from the input KML/XML file
+    for placemark in dom.getElementsByTagName('Placemark'):
+        ## @var name
+        # The Name of the Ward
+        name = placemark.getElementsByTagName('name')[0]
+        ward = name.firstChild.nodeValue.encode('utf-8')
+        #print placemark
+        #point = placemark.getElementsByTagName('Point')[0]
+        ## @var coordinates
+        # Contains the coordinates XML Element
+        coordinates = placemark.getElementsByTagName('coordinates')[0]
+        coords = coordinates.firstChild.nodeValue.encode('utf-8')
+
+        inneroutput.append(template % (ward, coords))
+    
+    # Join the output and comma separate, also needed for no trailing comma
+    output += ''',
+'''.join(inneroutput)
+            
+    # the tail of the JSON output file
+    output += '''
+]
+'''
+
+	## @var outFileHandle
+    # Output the contents to the JSON output file
+    outFileHandle = open(outfile, 'w')
+    outFileHandle.write(output.encode('utf-8'))
+    outFileHandle.close()
+
+def generate_jsonwards():
+    """Generate JSON Wards Routine"""
+    generate_jsonward_regina("ReginaWards.kml","regina_wards.json")
+    # To implement, may require combining inputs from multiple XML/KML files
+	#generate_jsonward_saskatoon("","saskatoon_wards.json")
 
 def generate_jsonpolls(outfile):
     """Generate JSON Polls Routine
@@ -460,6 +530,9 @@ def main():
     
     # From XML/KML since the CSV source does not have coordinates
     generate_jsonpolls('poll_table.json')
+    
+    # Generate the JSON Wards Files
+    generate_jsonwards()
 
 if __name__ == '__main__':
     """  @brief Runs the CSV To GeoJSON Routines."""
