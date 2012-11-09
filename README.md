@@ -1,4 +1,4 @@
-What's My Poll Station
+Where's My Poll Station
 ======================
 
 The What's my Poll Station is a voting information application that determines 
