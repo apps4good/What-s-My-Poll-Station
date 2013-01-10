@@ -6,11 +6,12 @@ a client's ward and nearest voting station for the upcoming Regina Civic
 Election.  The following cities are planned to work with this application:
 
 * Regina, SK.
-* Saskatoon, SK. (with limited Open Data)
+* Saskatoon, SK. (with limited Open Data Available From City of Saskatoon)
 
 ![What's My Poll Station Example](https://github.com/apps4good/What-s-My-Poll-Station/raw/master/img/wheres-my-poll.png)
 
-Also test this application at: http://boedesign.com/wheresmypoll/
+Production Application Version: http://whereismypoll.com/
+Application Test: http://boedesign.com/wheresmypoll/
 
 Running What's My Poll Station
 ------------------------------
