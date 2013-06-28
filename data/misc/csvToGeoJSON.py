@@ -46,7 +46,7 @@ class GPSPoint():
     def latitude(self):
         """Latitude Routine
         @return Latitude value"""
-        return self.latitude
+        return self.__latitude
     
     def longitude(self):
         """Longitude Routine
