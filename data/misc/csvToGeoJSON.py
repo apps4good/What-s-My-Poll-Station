@@ -133,7 +133,7 @@ def generate_jsonpoll_regina(infile):
 def generate_jsonpoll_saskatoon(infile):
     """@brief Generate Saskatoon Polls Output Routine
     @param infile Input File
-	@return list containing Min Lat, Min Lon, Max Lon, Max Lat."""
+    @return list containing Min Lat, Min Lon, Max Lon, Max Lat."""
     
     from xml.dom.minidom import parseString
     
@@ -177,12 +177,9 @@ def generate_jsonpoll_saskatoon(infile):
         coords = coordinates.firstChild.nodeValue.encode('utf-8').split(' ')
         for coord in coords:
             try:
-                #print coord
                 ## @var lla
                 # Lat, Long, Alt
                 lla = coord.strip().split(',')
-                #print lla[0]
-                #print "len: %s" % (len(lla))
                 ## @var lon
                 # Contains the longitude value for this polling station
                 lon = float(lla[0])
@@ -247,7 +244,6 @@ def generate_jsonward_regina(infile, outfile):
         # The Name of the Ward
         name = placemark.getElementsByTagName('name')[0]
         ward = name.firstChild.nodeValue.encode('utf-8')
-        #print placemark
         #point = placemark.getElementsByTagName('Point')[0]
         ## @var coordinates
         # Contains the coordinates XML Element
@@ -265,7 +261,7 @@ def generate_jsonward_regina(infile, outfile):
 ]
 '''
 
-	## @var outFileHandle
+    ## @var outFileHandle
     # Output the contents to the JSON output file
     outFileHandle = open(outfile, 'w')
     outFileHandle.write(output.encode('utf-8'))
@@ -275,7 +271,7 @@ def generate_jsonwards():
     """Generate JSON Wards Routine"""
     generate_jsonward_regina("ReginaWards.kml","regina_wards.json")
     # To implement, may require combining inputs from multiple XML/KML files
-	#generate_jsonward_saskatoon("","saskatoon_wards.json")
+    #generate_jsonward_saskatoon("","saskatoon_wards.json")
 
 def generate_jsonpolls(outfile):
     """Generate JSON Polls Routine
@@ -310,6 +306,7 @@ def generate_jsonpolls(outfile):
 		"region": "%s"
     }'''
     
+    # Process Regina JSON Polls
     reginapoints = generate_jsonpoll_regina('ReginaCityLimits.kml')
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
     minlon = float(reginapoints[0])
@@ -321,9 +318,9 @@ def generate_jsonpolls(outfile):
     inneroutput.append(template % (maxlat, minlon, minlat, maxlon,
         'regina_polls.json', 'Regina', 'SK'))
     
+    # Process Saskatoon JSON Polls
     saskatoonpoints = generate_jsonpoll_saskatoon(
             'SaskatoonElection2012.kml')
-    
     # Return value in Min Lat, Min Lon, Max Lon, Max Lat
     minlon = float(saskatoonpoints[0])
     minlat = float(saskatoonpoints[1])
