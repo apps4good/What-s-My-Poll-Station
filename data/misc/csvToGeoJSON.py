@@ -1,5 +1,5 @@
 """
-@name Python Roman Numeral CSV GeoJSON/JSON File
+@name What's My Poll Station - CSV GeoJSON/JSON File
 @file csvToGeoJSON.py
 @author Andrew Dyck
 @author Daniel Pronych
